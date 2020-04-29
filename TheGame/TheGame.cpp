@@ -12,11 +12,13 @@ void resetGame();
 void askToPlayAgain();
 void checkForWin();
 
-const int gridSize = 10;
-char gridNumbers[gridSize];
+const int gridSize = 11;
+char gridPositions[gridSize] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '\0' };
+char gridLabels[gridSize];
 bool gameWon;
 int playerTurns;
 int currentTurn;
+
 
 int main()
 {
@@ -61,7 +63,7 @@ void playGame()
 
 		if (playerChoice > 0 && playerChoice < 10)
 		{
-			gridNumbers[playerChoice] = currentPlayerMark;
+			gridLabels[playerChoice] = currentPlayerMark;
 		}
 		else
 		{
@@ -79,26 +81,26 @@ void drawCurrentGameState()
 	std::cout << "Player 1 [X] vs. Player 2 [O]\n\n";
 
 	std::cout << "      |   |   \n";
-	std::cout << "    " << gridNumbers[1] << " | " << gridNumbers[2] << " | " << gridNumbers[3] << " \n";
+	std::cout << "    " << gridLabels[1] << " | " << gridLabels[2] << " | " << gridLabels[3] << " \n";
 	std::cout << "   ___|___|___\n";
 	std::cout << "      |   |   \n";
-	std::cout << "    " << gridNumbers[4] << " | " << gridNumbers[5] << " | " << gridNumbers[6] << " \n";
+	std::cout << "    " << gridLabels[4] << " | " << gridLabels[5] << " | " << gridLabels[6] << " \n";
 	std::cout << "   ___|___|___\n";
 	std::cout << "      |   |   \n";
-	std::cout << "    " << gridNumbers[7] << " | " << gridNumbers[8] << " | " << gridNumbers[9] << " \n";
+	std::cout << "    " << gridLabels[7] << " | " << gridLabels[8] << " | " << gridLabels[9] << " \n";
 	std::cout << "      |   |   \n\n";
 }
 
 void resetGame()
 {
 	system("CLS");
-	playerTurns = gridSize;
+	playerTurns = gridSize-1;
 	currentTurn = 1;
 
 	// Populate the grid spaces with numbers again
 	for (int i = 0; i < gridSize; i++) {
 
-		gridNumbers[i] = '%c', (char)i;
+		gridLabels[i] = gridPositions[i];
 	}
 }
 
@@ -118,14 +120,14 @@ void askToPlayAgain()
 
 void checkForWin()
 {
-	if ((gridNumbers[1] == gridNumbers[2] == gridNumbers[3]) ||
-		(gridNumbers[4] == gridNumbers[5] == gridNumbers[6]) ||
-		(gridNumbers[7] == gridNumbers[8] == gridNumbers[9]) ||
-		(gridNumbers[1] == gridNumbers[4] == gridNumbers[7]) ||
-		(gridNumbers[2] == gridNumbers[5] == gridNumbers[8]) ||
-		(gridNumbers[3] == gridNumbers[6] == gridNumbers[9]) ||
-		(gridNumbers[1] == gridNumbers[5] == gridNumbers[9]) ||
-		(gridNumbers[3] == gridNumbers[5] == gridNumbers[7]))
+	if ((gridLabels[1] == gridLabels[2] == gridLabels[3]) ||
+		(gridLabels[4] == gridLabels[5] == gridLabels[6]) ||
+		(gridLabels[7] == gridLabels[8] == gridLabels[9]) ||
+		(gridLabels[1] == gridLabels[4] == gridLabels[7]) ||
+		(gridLabels[2] == gridLabels[5] == gridLabels[8]) ||
+		(gridLabels[3] == gridLabels[6] == gridLabels[9]) ||
+		(gridLabels[1] == gridLabels[5] == gridLabels[9]) ||
+		(gridLabels[3] == gridLabels[5] == gridLabels[7]))
 	{
 		gameWon = true;
 	}
