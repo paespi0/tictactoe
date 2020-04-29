@@ -10,9 +10,11 @@ void printInstructions();
 void drawCurrentGameState();
 void resetGame();
 void askToPlayAgain();
+void checkForWin();
 
 const int gridSize = 10;
 char gridNumbers[gridSize];
+bool gameWon;
 
 int main()
 {
@@ -78,6 +80,25 @@ void askToPlayAgain()
 	}
 	else {
 		system("CLS");
+	}
+}
+
+void checkForWin()
+{
+	if ((gridNumbers[1] == gridNumbers[2] == gridNumbers[3]) ||
+		(gridNumbers[4] == gridNumbers[5] == gridNumbers[6]) ||
+		(gridNumbers[7] == gridNumbers[8] == gridNumbers[9]) ||
+		(gridNumbers[1] == gridNumbers[4] == gridNumbers[7]) ||
+		(gridNumbers[2] == gridNumbers[5] == gridNumbers[8]) ||
+		(gridNumbers[3] == gridNumbers[6] == gridNumbers[9]) ||
+		(gridNumbers[1] == gridNumbers[5] == gridNumbers[9]) ||
+		(gridNumbers[3] == gridNumbers[5] == gridNumbers[7]))
+	{
+		gameWon = true;
+	}
+	else
+	{
+		gameWon = false;
 	}
 }
 
