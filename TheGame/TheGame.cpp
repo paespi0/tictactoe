@@ -11,7 +11,7 @@ void drawCurrentGameState();
 void resetGame();
 void askToPlayAgain();
 void checkForWin();
-void printWinScreen();
+void printWinningMessage();
 
 const int gridSize = 11;
 char gridPositions[gridSize] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '\0' };
@@ -136,6 +136,10 @@ void checkForWin()
 	{
 		gameWon = false;
 	}
+}
+
+void printWinningMessage() {
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
