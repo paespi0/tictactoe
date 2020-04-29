@@ -9,6 +9,7 @@ void printIntro();
 void printInstructions();
 void drawCurrentGameState();
 void resetGame();
+void askToPlayAgain();
 
 const int gridSize = 10;
 char gridNumbers[gridSize];
@@ -16,6 +17,7 @@ char gridNumbers[gridSize];
 int main()
 {
 	playGame();
+	askToPlayAgain();
 }
 
 void printIntro()
@@ -65,6 +67,19 @@ void resetGame()
 	}
 }
 
+void askToPlayAgain()
+{
+	char playerAnswer;
+	std::cout << "Do you want to play again? Y/N...\n";
+	std::cin >> playerAnswer;
+
+	if (playerAnswer == 'y' || playerAnswer == 'Y') {
+		playGame();
+	}
+	else {
+		system("CLS");
+	}
+}
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
