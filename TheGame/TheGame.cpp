@@ -2,77 +2,30 @@
 //
 
 #include <iostream>
+#include <stdlib.h>
+
+void playGame();
+void printIntro();
+void printInstructions();
 
 int main()
 {
+	playGame();
+}
 
-	int gridNumber;
+void printIntro()
+{
+	std::cout << "Let's play Tic Tac Toe!\nGet three in a row vertically, horizontally or diagonally to win.\n\n";
+}
 
-	std::cout << "| 1 | 2 | 3 |\n";
-	std::cout << "| 4 | 5 | 6 |\n";
-	std::cout << "| 7 | 8 | 9 |\n\n";
+void printInstructions()
+{
 
-	int playerTurns = 9;
-	int currentTurn = 0;
+	std::cout << "Type a number on the grid and press \'Enter\' to place your mark there.\n\n";
+}
 
-	
-	while (currentTurn < playerTurns)
-	{
-		std::cout << "Type a number on the grid and press Enter to place your x there.\n";
-		std::cin >> gridNumber;
-	
-		switch (gridNumber)
-		{
-		case 1: std::cout << "| x | 2 | 3 |\n";
-			std::cout << "| 4 | 5 | 6 |\n";
-			std::cout << "| 7 | 8 | 9 |\n\n";
-			currentTurn++;
-			break;
-		case 2: std::cout << "| 1 | x | 3 |\n";
-			std::cout << "| 4 | 5 | 6 |\n";
-			std::cout << "| 7 | 8 | 9 |\n\n";
-			currentTurn++;
-			break;
-		case 3: std::cout << "| 1 | 2 | x |\n";
-			std::cout << "| 4 | 5 | 6 |\n";
-			std::cout << "| 7 | 8 | 9 |\n\n";
-			currentTurn++;
-			break;
-		case 4: std::cout << "| 1 | 2 | 3 |\n";
-			std::cout << "| x | 5 | 6 |\n";
-			std::cout << "| 7 | 8 | 9 |\n\n";
-			currentTurn++;
-			break;
-		case 5: std::cout << "| 1 | 2 | 3 |\n";
-			std::cout << "| 4 | x | 6 |\n";
-			std::cout << "| 7 | 8 | 9 |\n\n";
-			currentTurn++;
-			break;
-		case 6: std::cout << "| 1 | 2 | 3 |\n";
-			std::cout << "| 4 | 5 | x |\n";
-			std::cout << "| 7 | 8 | 9 |\n\n";
-			currentTurn++;
-			break;
-		case 7: std::cout << "| 1 | 2 | 3 |\n";
-			std::cout << "| 4 | 5 | 6 |\n";
-			std::cout << "| x | 8 | 9 |\n\n";
-			currentTurn++;
-			break;
-		case 8: std::cout << "| 1 | 2 | 3 |\n";
-			std::cout << "| 4 | 5 | 6 |\n";
-			std::cout << "| 7 | x | 9 |\n\n";
-			currentTurn++;
-			break;
-		case 9: std::cout << "| 1 | 2 | 3 |\n";
-			std::cout << "| 4 | 5 | 6 |\n";
-			std::cout << "| 7 | 8 | x |\n\n";
-			currentTurn++;
-			break;
-		default: std::cout << "That doesn't seem right! Try again.\n\n";
-		}
-
-		std::cout << "The current turn is:" << currentTurn << std::endl;
-	}
+void playGame()
+{
 }
 
 
