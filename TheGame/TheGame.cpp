@@ -128,14 +128,14 @@ void askToPlayAgain()
 
 void checkForWin()
 {
-	if ((gridLabels[1] == gridLabels[2] == gridLabels[3]) ||
-		(gridLabels[4] == gridLabels[5] == gridLabels[6]) ||
-		(gridLabels[7] == gridLabels[8] == gridLabels[9]) ||
-		(gridLabels[1] == gridLabels[4] == gridLabels[7]) ||
-		(gridLabels[2] == gridLabels[5] == gridLabels[8]) ||
-		(gridLabels[3] == gridLabels[6] == gridLabels[9]) ||
-		(gridLabels[1] == gridLabels[5] == gridLabels[9]) ||
-		(gridLabels[3] == gridLabels[5] == gridLabels[7]))
+	if ((gridLabels[1] == gridLabels[2]) && (gridLabels[2] == gridLabels[3]) ||
+		(gridLabels[4] == gridLabels[5]) && (gridLabels[5] == gridLabels[6]) ||
+		(gridLabels[7] == gridLabels[8]) && (gridLabels[8] == gridLabels[9]) ||
+		(gridLabels[1] == gridLabels[4]) && (gridLabels[4] == gridLabels[7]) ||
+		(gridLabels[2] == gridLabels[5]) && (gridLabels[5] == gridLabels[8]) ||
+		(gridLabels[3] == gridLabels[6]) && (gridLabels[6] == gridLabels[9]) ||
+		(gridLabels[1] == gridLabels[5]) && (gridLabels[5] == gridLabels[9]) ||
+		(gridLabels[3] == gridLabels[5]) && (gridLabels[5] == gridLabels[7]))
 	{
 		gameWon = true;
 	}
