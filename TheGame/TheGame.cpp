@@ -45,7 +45,7 @@ void playGame()
 	printInstructions();
 	drawCurrentGameState();
 
-	while (currentTurn < playerTurns && gameWon == false)
+	do
 	{
 		char currentPlayerMark;
 		if (currentTurn % 2 == 1)
@@ -73,8 +73,15 @@ void playGame()
 
 		drawCurrentGameState();
 		checkForWin();
-		currentTurn++;
-	}
+		if (gameWon) {
+			printWinningMessage();
+			break;
+		}
+		else
+		{
+			currentTurn++;
+		}
+	} while (currentTurn < playerTurns && gameWon == false);
 }
 
 void drawCurrentGameState()
