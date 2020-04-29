@@ -15,6 +15,8 @@ void checkForWin();
 const int gridSize = 10;
 char gridNumbers[gridSize];
 bool gameWon;
+int playerTurns;
+int currentTurn;
 
 int main()
 {
@@ -39,6 +41,27 @@ void playGame()
 	printIntro();
 	printInstructions();
 	drawCurrentGameState();
+
+	while (currentTurn < playerTurns && gameWon == false)
+	{
+		char currentPlayerMark;
+		if (currentTurn % 2 == 1)
+		{
+			currentPlayerMark = 'X';
+			std::cout << "> Player 1's turn [X]\n";
+		}
+		else
+		{
+			currentPlayerMark = 'O';
+			std::cout << "> Player 2's turn [O]\n";
+		}
+
+
+
+		drawCurrentGameState();
+		//checkForWin();
+		currentTurn++;
+	}
 }
 
 void drawCurrentGameState()
