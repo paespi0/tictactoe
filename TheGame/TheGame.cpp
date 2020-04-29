@@ -71,7 +71,7 @@ void playGame()
 		}
 
 		drawCurrentGameState();
-		//checkForWin();
+		checkForWin();
 		currentTurn++;
 	}
 }
