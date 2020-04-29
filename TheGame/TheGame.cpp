@@ -8,6 +8,7 @@ void playGame();
 void printIntro();
 void printInstructions();
 void drawCurrentGameState();
+void resetGame();
 
 const int gridSize = 10;
 char gridNumbers[gridSize];
@@ -45,6 +46,19 @@ void drawCurrentGameState()
 	std::cout << "      |   |   \n";
 	std::cout << "    " << gridNumbers[7] << " | " << gridNumbers[8] << " | " << gridNumbers[9] << " \n";
 	std::cout << "      |   |   \n\n";
+}
+
+void resetGame()
+{
+	system("CLS");
+	playerTurns = gridSize;
+	currentTurn = 1;
+
+	// Populate the grid spaces with numbers again
+	for (int i = 0; i < gridSize; i++) {
+
+		gridNumbers[i] = '%c', (char)i;
+	}
 }
 
 
