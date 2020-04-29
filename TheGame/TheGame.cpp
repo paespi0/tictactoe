@@ -1,6 +1,12 @@
 // TheGame.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
+
 #include <iostream>
 #include <stdlib.h>
 
@@ -30,12 +36,14 @@ int main()
 void printIntro()
 {
 	std::cout << "Let's play Tic Tac Toe!\nGet three in a row vertically, horizontally or diagonally to win.\n\n";
+	Sleep(1000);
 }
 
 void printInstructions()
 {
 
 	std::cout << "Type a number on the grid and press \'Enter\' to place your mark there.\n\n";
+	Sleep(1000);
 }
 
 void playGame()
