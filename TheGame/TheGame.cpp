@@ -90,6 +90,9 @@ void playGame()
 			currentTurn++;
 		}
 	} while (currentTurn < playerTurns && gameWon == false);
+
+	std::cout << "Total turns taken: " << currentTurn << std::endl;
+	std::cout << "gameWon was " << gameWon << std::endl;
 }
 
 void drawCurrentGameState()
