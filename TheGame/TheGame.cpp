@@ -7,6 +7,10 @@
 void playGame();
 void printIntro();
 void printInstructions();
+void drawCurrentGameState();
+
+const int gridSize = 10;
+char gridNumbers[gridSize];
 
 int main()
 {
@@ -28,6 +32,20 @@ void playGame()
 {
 }
 
+void drawCurrentGameState()
+{
+	std::cout << "Player 1 [X] vs. Player 2 [O]\n\n";
+
+	std::cout << "      |   |   \n";
+	std::cout << "    " << gridNumbers[1] << " | " << gridNumbers[2] << " | " << gridNumbers[3] << " \n";
+	std::cout << "   ___|___|___\n";
+	std::cout << "      |   |   \n";
+	std::cout << "    " << gridNumbers[4] << " | " << gridNumbers[5] << " | " << gridNumbers[6] << " \n";
+	std::cout << "   ___|___|___\n";
+	std::cout << "      |   |   \n";
+	std::cout << "    " << gridNumbers[7] << " | " << gridNumbers[8] << " | " << gridNumbers[9] << " \n";
+	std::cout << "      |   |   \n\n";
+}
 
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
