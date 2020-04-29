@@ -31,6 +31,10 @@ void printInstructions()
 
 void playGame()
 {
+	resetGame();
+	printIntro();
+	printInstructions();
+	drawCurrentGameState();
 }
 
 void drawCurrentGameState()
