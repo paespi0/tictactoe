@@ -56,7 +56,17 @@ void playGame()
 			std::cout << "> Player 2's turn [O]\n";
 		}
 
+		int playerChoice;
+		std::cin >> playerChoice;
 
+		if (playerChoice > 0 && playerChoice < 10)
+		{
+			gridNumbers[playerChoice] = currentPlayerMark;
+		}
+		else
+		{
+			std::cout << "That doesn't seem right! Try again.\n\n";
+		}
 
 		drawCurrentGameState();
 		//checkForWin();
