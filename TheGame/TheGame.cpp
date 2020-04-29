@@ -157,7 +157,7 @@ void checkForWin()
 }
 
 void printWinningMessage() {
-
+	std::cout << "You won!" << std::endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
