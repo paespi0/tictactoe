@@ -94,11 +94,26 @@ void printIntro()
 void printInstructions()
 {
 	system("CLS");
-	std::cout << "HOW TO PLAY\n";
-	std::cout << "--------------------------------------------------------------------------\n\n";
+	std::cout << "                               +---------------+\n";
+	std::cout << "                               |  HOW TO PLAY  |\n";
+	std::cout << "                               +---------------+\n\n";
 	std::cout << "- Two players take turns placing their marker, an [X] or an [O].\n";
-	std::cout << "- Get three in a row vertically, horizontally or diagonally to win.\n";
-	std::cout << "- Type a number on the grid and press \'Enter\' to place your mark there.\n\n";
+	std::cout << "- Type a number on the grid and press \'Enter\' to place your marker there.\n\n";
+	std::cout << "                               +---------------+\n";
+	std::cout << "                               |  HOW TO WIN!  |\n";
+	std::cout << "                               +---------------+\n\n";
+	std::cout << "- Get three in a row vertically, horizontally or diagonally to win.\n\n";
+	std::cout << "            |   |               |   |               |   |   \n";
+	std::cout << "            | X |               |   |             X |   |   \n";
+	std::cout << "         ___|___|___         ___|___|___         ___|___|___\n";
+	std::cout << "            |   |               |   |               |   |   \n";
+	std::cout << "            | X |             X | X | X             | X |   \n";
+	std::cout << "         ___|___|___         ___|___|___         ___|___|___\n";
+	std::cout << "            |   |               |   |               |   |   \n";
+	std::cout << "            | X |               |   |               |   | X \n";
+	std::cout << "            |   |               |   |               |   |   \n\n";
+
+
 	std::cout << "Type [B] and press \'Enter\' to return to the main menu.\n";
 
 	std::cin >> userInput;
@@ -127,8 +142,8 @@ void showMenu()
 		std::cin >> userInput;
 		if (userInput == 'P' || userInput == 'p')
 		{
-			printInstructions();
 			validUserInput = true;
+			printInstructions();
 		}
 		else if (userInput == 'S' || userInput == 's')
 		{
