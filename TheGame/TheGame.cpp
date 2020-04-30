@@ -17,6 +17,8 @@ void printInstructions();
 void drawCurrentGameState();
 void setUpGame();
 void askToPlayAgain();
+void getPlayerMove(char currentPlayerMark);
+bool checkValidMove(int playerMove);
 void checkForWin();
 void printWinningMessage();
 void showMenu();
