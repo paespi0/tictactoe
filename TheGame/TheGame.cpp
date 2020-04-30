@@ -31,6 +31,8 @@ int playerTurns;
 int currentTurn;
 char userInput;
 bool validUserInput;
+int playerOneScore = 0;
+int playerTwoScore = 0;
 
 int main()
 {
@@ -327,17 +329,17 @@ void playGame()
 void drawCurrentGameState()
 {
 	system("CLS");
-	std::cout << "Player 1 [X] vs. Player 2 [O]\n\n";
-
-	std::cout << "      |   |   \n";
-	std::cout << "    " << gridLabels[1] << " | " << gridLabels[2] << " | " << gridLabels[3] << " \n";
-	std::cout << "   ___|___|___\n";
-	std::cout << "      |   |   \n";
-	std::cout << "    " << gridLabels[4] << " | " << gridLabels[5] << " | " << gridLabels[6] << " \n";
-	std::cout << "   ___|___|___\n";
-	std::cout << "      |   |   \n";
-	std::cout << "    " << gridLabels[7] << " | " << gridLabels[8] << " | " << gridLabels[9] << " \n";
-	std::cout << "      |   |   \n\n";
+	std::cout << "Player 1 [X] vs. Player 2 [O]\n";
+	std::cout << "           " << playerOneScore << "  -  " << playerTwoScore << "\n\n";
+	std::cout << "            |   |   \n";
+	std::cout << "          " << gridLabels[1] << " | " << gridLabels[2] << " | " << gridLabels[3] << " \n";
+	std::cout << "         ___|___|___\n";
+	std::cout << "            |   |   \n";
+	std::cout << "          " << gridLabels[4] << " | " << gridLabels[5] << " | " << gridLabels[6] << " \n";
+	std::cout << "         ___|___|___\n";
+	std::cout << "            |   |   \n";
+	std::cout << "          " << gridLabels[7] << " | " << gridLabels[8] << " | " << gridLabels[9] << " \n";
+	std::cout << "            |   |   \n\n";
 }
 
 void setUpGame()
@@ -391,10 +393,12 @@ void printWinningMessage()
 	if (currentTurn % 2 == 1)
 	{
 		std::cout << "> Player 1 wins! [X]\n\n";
+		playerOneScore++;
 	}
 	else
 	{
 		std::cout << "> Player 2 wins! [O]\n\n";
+		playerTwoScore++;
 	}
 }
 
