@@ -39,7 +39,6 @@ int main()
 	printIntro();
 	showMenu();
 	playGame();
-	askToPlayAgain();
 }
 
 void printIntro()
@@ -322,8 +321,12 @@ void playGame()
 		}
 	} while (currentTurn < playerTurns && gameWon == false);
 
-	std::cout << "Total turns taken: " << currentTurn << std::endl;
-	std::cout << "gameWon was " << gameWon << std::endl;
+	if (!gameWon)
+	{
+		std::cout << "It's a draw! Better luck next time...\n\n";
+	}
+
+	askToPlayAgain();
 }
 
 void drawCurrentGameState()
