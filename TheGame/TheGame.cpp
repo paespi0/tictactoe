@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <conio.h>
 
 void playGame();
 void printIntro();
@@ -154,7 +155,7 @@ void printInstructions()
 	std::cout << "            |   |               |   |               |   |   \n";
 	std::cout << "            |   |               |   |               |   |   \n";
 	std::cout << "            |   |               |   |               |   |   \n\n";
-	std::cout << "Type [B] and press \'Enter\' to return to the main menu.\n";
+	std::cout << "Press any key to return to the main menu...\n\n";
 	Sleep(1000);
 	system("CLS");
 	std::cout << "                               +---------------+\n";
@@ -175,7 +176,7 @@ void printInstructions()
 	std::cout << "            |   |               |   |               |   |   \n";
 	std::cout << "            |   |               |   |               |   |   \n";
 	std::cout << "            |   |               |   |               |   |   \n\n";
-	std::cout << "Type [B] and press \'Enter\' to return to the main menu.\n";
+	std::cout << "Press any key to return to the main menu...\n\n";
 	Sleep(1000);
 	system("CLS");
 	std::cout << "                               +---------------+\n";
@@ -196,7 +197,7 @@ void printInstructions()
 	std::cout << "            |   |               |   |               |   |   \n";
 	std::cout << "            |   |               |   |               |   |   \n";
 	std::cout << "            |   |               |   |               |   |   \n\n";
-	std::cout << "Type [B] and press \'Enter\' to return to the main menu.\n";
+	std::cout << "Press any key to return to the main menu...\n\n";
 	Sleep(1000);
 	system("CLS");
 	std::cout << "                               +---------------+\n";
@@ -217,19 +218,19 @@ void printInstructions()
 	std::cout << "            |   |               |   |               |   |   \n";
 	std::cout << "            | X |               |   |               |   | X \n";
 	std::cout << "            |   |               |   |               |   |   \n\n";
-	std::cout << "Type [B] and press \'Enter\' to return to the main menu.\n\n";
 
-	std::cin >> userInput;
-
-	if (userInput == 'B' || userInput == 'b')
+	std::cout << "Press any key to return to the main menu...\n\n";
+	int keyPressed;
+	keyPressed = _getch();
+	if (keyPressed)
 	{
 		showMenu();
 	}
 	else
 	{
-		std::cout << "I'm sorry, I don't understand that command. Try again.\n";
+		std::cout << "Press any key to return to the main menu...\n\n";
+		_getch();
 	}
-	
 }
 
 void showScoreboard()
@@ -239,15 +240,18 @@ void showScoreboard()
 	std::cout << "                                |  SCOREBOARD  |\n";
 	std::cout << "                                +--------------+\n\n";
 	std::cout << "This feature is coming soon!\n\n";
-	std::cout << "Type [B] and press \'Enter\' to return to the main menu.\n\n";
-	std::cin >> userInput;
-	if (userInput == 'B' || userInput == 'b')
+
+	int keyPressed;
+	std::cout << "Press any key to return to the main menu...\n\n";
+	keyPressed = _getch();
+	if (keyPressed)
 	{
 		showMenu();
 	}
 	else
 	{
-		std::cout << "I'm sorry, I don't understand that command. Try again.\n";
+		std::cout << "Press any key to return to the main menu...\n\n";
+		_getch();
 	}
 }
 
