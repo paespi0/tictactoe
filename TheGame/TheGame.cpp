@@ -94,6 +94,7 @@ void printIntro()
 
 void showMenu()
 {
+	system("CLS");
 	std::cout << "TIC TAC TOE GAME\n\n";
 	std::cout << "- Play New Game [N]\n";
 	std::cout << "- How to Play [P]\n";
@@ -236,8 +237,8 @@ void showCredits()
 	std::cout << "This game was made by Tessa Power.\n";
 	std::cout << "Type [B] and press \'Enter\' to return to the main menu.\n";
 	std::cin >> userInput;
-	if (userInput == 'B') {
-		system("CLS");
+	if (userInput == 'B' || userInput == 'b')
+	{
 		showMenu();
 	}
 	else
@@ -295,6 +296,7 @@ void playGame()
 
 void drawCurrentGameState()
 {
+	system("CLS");
 	std::cout << "Player 1 [X] vs. Player 2 [O]\n\n";
 
 	std::cout << "      |   |   \n";
