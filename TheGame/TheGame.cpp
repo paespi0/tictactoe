@@ -312,7 +312,6 @@ void playGame()
 		checkForWin();
 		if (gameWon) {
 			printWinningMessage();
-			return;
 		}
 		else
 		{
