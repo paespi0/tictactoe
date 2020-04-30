@@ -372,6 +372,36 @@ void askToPlayAgain()
 	}
 }
 
+void getPlayerMove(char currentPlayerMark)
+{
+	bool validMove = false;
+	while (!validMove) {
+		std::cin >> playerMove;
+		if (checkValidMove(playerMove))
+		{
+			validMove = true;
+			gridLabels[playerMove] = currentPlayerMark;
+			break;
+		}
+		else
+		{
+			std::cout << "That spot is already taken! Try again.\n\n";
+		}
+	}
+}
+
+bool checkValidMove(int playerMove)
+{
+	if (playerMove > 0 && playerMove < 10 && gridLabels[playerMove] == 'X' || playerMove > 0 && playerMove < 10 && gridLabels[playerMove] == 'O')
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
 void checkForWin()
 {
 	horizontalWin = ((gridLabels[1] == gridLabels[2]) && (gridLabels[2] == gridLabels[3]) ||
