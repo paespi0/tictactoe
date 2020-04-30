@@ -28,7 +28,8 @@ void showCredits();
 const int gridSize = 11;
 char gridPositions[gridSize] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '\0' };
 char gridLabels[gridSize];
-bool gameWon;
+bool horizontalWin, verticalWin, diagonalWin, gameWon;
+int playerMove;
 int playerTurns;
 int currentTurn;
 char userInput;
@@ -373,14 +374,18 @@ void askToPlayAgain()
 
 void checkForWin()
 {
-	if ((gridLabels[1] == gridLabels[2]) && (gridLabels[2] == gridLabels[3]) ||
+	horizontalWin = ((gridLabels[1] == gridLabels[2]) && (gridLabels[2] == gridLabels[3]) ||
 		(gridLabels[4] == gridLabels[5]) && (gridLabels[5] == gridLabels[6]) ||
-		(gridLabels[7] == gridLabels[8]) && (gridLabels[8] == gridLabels[9]) ||
-		(gridLabels[1] == gridLabels[4]) && (gridLabels[4] == gridLabels[7]) ||
+		(gridLabels[7] == gridLabels[8]) && (gridLabels[8] == gridLabels[9]));
+
+	verticalWin = ((gridLabels[1] == gridLabels[4]) && (gridLabels[4] == gridLabels[7]) ||
 		(gridLabels[2] == gridLabels[5]) && (gridLabels[5] == gridLabels[8]) ||
-		(gridLabels[3] == gridLabels[6]) && (gridLabels[6] == gridLabels[9]) ||
-		(gridLabels[1] == gridLabels[5]) && (gridLabels[5] == gridLabels[9]) ||
-		(gridLabels[3] == gridLabels[5]) && (gridLabels[5] == gridLabels[7]))
+		(gridLabels[3] == gridLabels[6]) && (gridLabels[6] == gridLabels[9]));
+
+	diagonalWin = ((gridLabels[1] == gridLabels[5]) && (gridLabels[5] == gridLabels[9]) ||
+		(gridLabels[3] == gridLabels[5]) && (gridLabels[5] == gridLabels[7]));
+
+	if (horizontalWin || verticalWin || diagonalWin)
 	{
 		gameWon = true;
 	}
