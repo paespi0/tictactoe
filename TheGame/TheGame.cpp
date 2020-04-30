@@ -345,11 +345,10 @@ void drawCurrentGameState()
 
 void setUpGame()
 {
-	system("CLS");
-	playerTurns = gridSize-1;
+	playerTurns = gridSize - 1;
 	currentTurn = 1;
 
-	// Populate the grid spaces with numbers again
+	// Populate the grid spaces with place holder numbers
 	for (int i = 0; i < gridSize; i++) {
 
 		gridLabels[i] = gridPositions[i];
