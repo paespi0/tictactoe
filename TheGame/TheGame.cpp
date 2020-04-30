@@ -27,6 +27,7 @@ char gridLabels[gridSize];
 bool gameWon;
 int playerTurns;
 int currentTurn;
+char userInput;
 
 
 int main()
@@ -53,8 +54,91 @@ void printInstructions()
 	std::cout << "- Type a number on the grid and press \'Enter\' to place your mark there.\n\n";
 	std::cout << "Type [B] and press \'Enter\' to return to the main menu.\n";
 
-	std::cout << "Type a number on the grid and press \'Enter\' to place your mark there.\n\n";
-	Sleep(1000);
+	std::cin >> userInput;
+
+	if (userInput == 'B') {
+		showMenu();
+	}
+	else
+	{
+		std::cout << "I'm sorry, I don't understand that command. Try again.\n";
+	}
+	
+}
+
+void showMenu()
+{
+	std::cout << "TIC TAC TOE GAME\n\n";
+	std::cout << "- Play New Game [N]\n";
+	std::cout << "- How to Play [P]\n";
+	std::cout << "- Scoreboard [S]\n";
+	std::cout << "- Credits [C]\n\n";
+
+	bool validUserInput = false;
+
+	while (!validUserInput) {
+		std::cin >> userInput;
+		if (userInput == 'P' || userInput == 'p')
+		{
+			printInstructions();
+			validUserInput = true;
+		}
+		else if (userInput == 'S' || userInput == 's')
+		{
+			showScoreboard();
+			validUserInput = true;
+		}
+		else if (userInput == 'C' || userInput == 'c')
+		{
+			showCredits();
+			validUserInput = true;
+		}
+		else if (userInput == 'N' || userInput == 'n')
+		{
+			validUserInput = true;
+			return;
+		}
+		else
+		{
+			std::cout << "I'm sorry, I don't understand that command. Try again.\n";
+		}
+	}
+}
+
+void showScoreboard()
+{
+	system("CLS");
+	std::cout << "SCOREBOARD\n";
+	std::cout << "--------------------------------------------------------------------------\n\n";
+	std::cout << "This feature is coming soon!\n";
+	std::cout << "Type [B] and press \'Enter\' to return to the main menu.\n";
+	std::cin >> userInput;
+	if (userInput == 'B') {
+		system("CLS");
+		showMenu();
+	}
+	else
+	{
+		std::cout << "I'm sorry, I don't understand that command. Try again.\n";
+	}
+}
+
+void showCredits()
+{
+	system("CLS");
+	std::cout << "CREDITS\n";
+	std::cout << "--------------------------------------------------------------------------\n\n";
+	std::cout << "This game was made by Tessa Power.\n";
+	std::cout << "Type [B] and press \'Enter\' to return to the main menu.\n";
+	std::cin >> userInput;
+	if (userInput == 'B') {
+		system("CLS");
+		showMenu();
+	}
+	else
+	{
+		std::cout << "I'm sorry, I don't understand that command. Try again.\n";
+	}
 }
 
 void playGame()
