@@ -251,7 +251,8 @@ void checkForWin()
 	}
 }
 
-void printWinningMessage() {
+void printWinningMessage()
+{
 	std::cout << "You won!" << std::endl;
 }
 
