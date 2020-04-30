@@ -220,8 +220,29 @@ void printInstructions()
 	std::cout << "Type [B] and press \'Enter\' to return to the main menu.\n\n";
 
 	std::cin >> userInput;
-	if (userInput == 'B') {
-		system("CLS");
+
+	if (userInput == 'B' || userInput == 'b')
+	{
+		showMenu();
+	}
+	else
+	{
+		std::cout << "I'm sorry, I don't understand that command. Try again.\n";
+	}
+	
+}
+
+void showScoreboard()
+{
+	system("CLS");
+	std::cout << "                                +--------------+\n";
+	std::cout << "                                |  SCOREBOARD  |\n";
+	std::cout << "                                +--------------+\n\n";
+	std::cout << "This feature is coming soon!\n\n";
+	std::cout << "Type [B] and press \'Enter\' to return to the main menu.\n\n";
+	std::cin >> userInput;
+	if (userInput == 'B' || userInput == 'b')
+	{
 		showMenu();
 	}
 	else
@@ -233,10 +254,11 @@ void printInstructions()
 void showCredits()
 {
 	system("CLS");
-	std::cout << "CREDITS\n";
-	std::cout << "--------------------------------------------------------------------------\n\n";
-	std::cout << "This game was made by Tessa Power.\n";
-	std::cout << "Type [B] and press \'Enter\' to return to the main menu.\n";
+	std::cout << "                                  +-----------+\n";
+	std::cout << "                                  |  CREDITS  |\n";
+	std::cout << "                                  +-----------+\n\n";
+	std::cout << "This game was made by Tessa Power.\n\n";
+	std::cout << "Type [B] and press \'Enter\' to return to the main menu.\n\n";
 	std::cin >> userInput;
 	if (userInput == 'B' || userInput == 'b')
 	{
