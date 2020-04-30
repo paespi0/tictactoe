@@ -31,6 +31,8 @@ int currentTurn;
 
 int main()
 {
+	printIntro();
+	showMenu();
 	playGame();
 	askToPlayAgain();
 }
@@ -58,8 +60,6 @@ void printInstructions()
 void playGame()
 {
 	resetGame();
-	printIntro();
-	printInstructions();
 	drawCurrentGameState();
 
 	do
