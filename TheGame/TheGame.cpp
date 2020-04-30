@@ -14,7 +14,7 @@ void playGame();
 void printIntro();
 void printInstructions();
 void drawCurrentGameState();
-void resetGame();
+void setUpGame();
 void askToPlayAgain();
 void checkForWin();
 void printWinningMessage();
@@ -258,21 +258,24 @@ void showCredits()
 	std::cout << "                                  |  CREDITS  |\n";
 	std::cout << "                                  +-----------+\n\n";
 	std::cout << "This game was made by Tessa Power.\n\n";
-	std::cout << "Type [B] and press \'Enter\' to return to the main menu.\n\n";
-	std::cin >> userInput;
-	if (userInput == 'B' || userInput == 'b')
+
+	int keyPressed;
+	std::cout << "Press any key to return to the main menu...\n\n";
+		keyPressed = _getch();
+	if (keyPressed)
 	{
 		showMenu();
 	}
 	else
 	{
-		std::cout << "I'm sorry, I don't understand that command. Try again.\n";
+		std::cout << "Press any key to return to the main menu...\n\n";
+		_getch();
 	}
 }
 
 void playGame()
 {
-	resetGame();
+	setUpGame();
 	drawCurrentGameState();
 
 	do
@@ -333,7 +336,7 @@ void drawCurrentGameState()
 	std::cout << "      |   |   \n\n";
 }
 
-void resetGame()
+void setUpGame()
 {
 	system("CLS");
 	playerTurns = gridSize-1;
