@@ -108,26 +108,26 @@ void showMenu()
 	std::cout << "                            Press [Enter] to play...\n";
 
 	validUserInput = false;
+	userInput = _getch();
 
 	while (!validUserInput)
 	{
-		std::cin >> userInput;
-		if (userInput == 'P' || userInput == 'p')
+		if (userInput == '1')
 		{
 			validUserInput = true;
 			printInstructions();
 		}
-		else if (userInput == 'S' || userInput == 's')
+		else if (userInput == '2')
 		{
 			validUserInput = true;
 			showScoreboard();
 		}
-		else if (userInput == 'C' || userInput == 'c')
+		else if (userInput == '3')
 		{
 			validUserInput = true;
 			showCredits();
 		}
-		else if (userInput == 'N' || userInput == 'n')
+		else if (userInput)
 		{
 			validUserInput = true;
 			return;
