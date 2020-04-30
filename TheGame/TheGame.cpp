@@ -147,8 +147,8 @@ void showMenu()
 		}
 		else if (userInput == 'S' || userInput == 's')
 		{
-			showScoreboard();
 			validUserInput = true;
+			showScoreboard();
 		}
 		else if (userInput == 'C' || userInput == 'c')
 		{
