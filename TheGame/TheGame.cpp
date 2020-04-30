@@ -18,6 +18,8 @@ void resetGame();
 void askToPlayAgain();
 void checkForWin();
 void printWinningMessage();
+void showMenu();
+void showScoreboard();
 
 const int gridSize = 11;
 char gridPositions[gridSize] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '\0' };
