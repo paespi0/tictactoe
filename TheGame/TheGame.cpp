@@ -29,7 +29,7 @@ bool gameWon;
 int playerTurns;
 int currentTurn;
 char userInput;
-
+bool validUserInput;
 
 int main()
 {
@@ -77,7 +77,7 @@ void showMenu()
 	std::cout << "- Scoreboard [S]\n";
 	std::cout << "- Credits [C]\n\n";
 
-	bool validUserInput = false;
+	validUserInput = false;
 
 	while (!validUserInput) {
 		std::cin >> userInput;
