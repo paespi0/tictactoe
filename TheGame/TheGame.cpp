@@ -298,19 +298,8 @@ void playGame()
 			currentPlayerMark = 'O';
 			std::cout << "> Player 2's turn [O]\n";
 		}
-
-		int playerChoice;
-		std::cin >> playerChoice;
-
-		if (playerChoice > 0 && playerChoice < 10)
-		{
-			gridLabels[playerChoice] = currentPlayerMark;
-		}
-		else
-		{
-			std::cout << "That doesn't seem right! Try again.\n\n";
-		}
-
+		
+		getPlayerMove(currentPlayerMark);
 		drawCurrentGameState();
 		checkForWin();
 		if (gameWon) {
