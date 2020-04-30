@@ -402,6 +402,7 @@ bool checkValidMove(int playerMove)
 {
 	if (playerMove > 0 && playerMove < 10 && gridLabels[playerMove] == 'X' || playerMove > 0 && playerMove < 10 && gridLabels[playerMove] == 'O')
 	{
+		std::cout << "That doesn't seem right. Try again.\n";
 		return false;
 	}
 	else
