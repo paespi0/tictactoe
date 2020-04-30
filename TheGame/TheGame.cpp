@@ -381,7 +381,14 @@ void checkForWin()
 
 void printWinningMessage()
 {
-	std::cout << "You won!" << std::endl;
+	if (currentTurn % 2 == 1)
+	{
+		std::cout << "> Player 1 wins! [X]\n\n";
+	}
+	else
+	{
+		std::cout << "> Player 2 wins! [O]\n\n";
+	}
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
