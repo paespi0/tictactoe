@@ -40,7 +40,9 @@ int main()
 
 void printIntro()
 {
-	std::cout << "Let's play Tic Tac Toe!\nGet three in a row vertically, horizontally or diagonally to win.\n\n";
+	std::cout << "Let's play Tic Tac Toe!\n";
+	Sleep(1000);
+
 	Sleep(1000);
 }
 
