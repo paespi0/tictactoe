@@ -99,11 +99,12 @@ void showMenu()
 	std::cout << "- Play New Game [N]\n";
 	std::cout << "- How to Play [P]\n";
 	std::cout << "- Scoreboard [S]\n";
-	std::cout << "- Credits [C]\n\n";
+	std::cout << "- Credits [C]\n";
 
 	validUserInput = false;
 
-	while (!validUserInput) {
+	while (!validUserInput)
+	{
 		std::cin >> userInput;
 		if (userInput == 'P' || userInput == 'p')
 		{
