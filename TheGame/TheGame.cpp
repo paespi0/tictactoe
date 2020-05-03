@@ -285,7 +285,7 @@ void showCredits()
 	std::cout << "                                  +-----------+\n";
 	std::cout << "                                  |  CREDITS  |\n";
 	std::cout << "                                  +-----------+\n\n";
-	std::cout << "						  This game was made by Tessa Power.\n\n";
+	std::cout << "                      This game was made by Tessa Power.\n\n";
 
 	int keyPressed;
 	std::cout << "           Press any key to return to the main menu...";
@@ -308,7 +308,6 @@ void playGame()
 
 	do
 	{
-		
 		if (currentTurn % 2 == 1)
 		{
 			currentPlayerMark = 'X';
