@@ -26,8 +26,8 @@ void showMenu();
 void showScoreboard();
 void showCredits();
 
-const int gridSize = 11;
-char gridPositions[gridSize] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '\0' };
+const int gridSize = 10;
+char gridPositions[gridSize] = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '\0' };
 char gridLabels[gridSize];
 bool horizontalWin, verticalWin, diagonalWin, gameWon;
 int playerMove;
@@ -402,7 +402,7 @@ void getPlayerMove(char currentPlayerMark)
 
 bool checkValidMove(int playerMove)
 {
-	if (playerMove > 0 && playerMove < 10 && gridLabels[playerMove] == 'X' || playerMove > 0 && playerMove < 10 && gridLabels[playerMove] == 'O')
+	if (playerMove >= 0 && playerMove < 10 && gridLabels[playerMove-1] == 'X' || playerMove >= 0 && playerMove < 10 && gridLabels[playerMove-1] == 'O')
 	{
 		std::cout << "That doesn't seem right. Try again.\n";
 		return false;
