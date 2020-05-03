@@ -1,5 +1,5 @@
 // TheGame.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// Copyright Tessa Power 2020
 
 #ifdef _WIN32
 #include <Windows.h>
