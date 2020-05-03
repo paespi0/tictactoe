@@ -415,26 +415,12 @@ bool checkValidMove(int playerMove)
 
 void checkForWin()
 {
-	horizontalWin = ((gridLabels[1] == gridLabels[2]) && (gridLabels[2] == gridLabels[3]) ||
-		(gridLabels[4] == gridLabels[5]) && (gridLabels[5] == gridLabels[6]) ||
-		(gridLabels[7] == gridLabels[8]) && (gridLabels[8] == gridLabels[9]));
-
-	verticalWin = ((gridLabels[1] == gridLabels[4]) && (gridLabels[4] == gridLabels[7]) ||
-		(gridLabels[2] == gridLabels[5]) && (gridLabels[5] == gridLabels[8]) ||
-		(gridLabels[3] == gridLabels[6]) && (gridLabels[6] == gridLabels[9]));
-
-	diagonalWin = ((gridLabels[1] == gridLabels[5]) && (gridLabels[5] == gridLabels[9]) ||
-		(gridLabels[3] == gridLabels[5]) && (gridLabels[5] == gridLabels[7]));
-
-	if (horizontalWin || verticalWin || diagonalWin)
-	{
-		gameWon = true;
-	}
-	else
-	{
-		gameWon = false;
-	}
+	GameWinChecker gameWinChecker;
+	gameWon = gameWinChecker.checkIfSymbolHasWon(currentPlayerMark, gridLabels);
 }
+
+
+
 
 void printWinningMessage()
 {
