@@ -83,7 +83,7 @@ namespace GameWinCheckerTests
 			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
 
 			// Assert
-			Assert::IsFalse(gameWon, L"Computer said no");
+			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfEmptyGrid\' failed.");
 		}
 	};
 
