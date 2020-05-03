@@ -160,7 +160,7 @@ namespace GameWinCheckerTests
 			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
 
 			// Assert
-			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfSymbolIsForeign\' failed.");
+			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfSymbolIsLosingPlayerMarker\' failed.");
 		}
 
 	};
