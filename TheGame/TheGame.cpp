@@ -26,12 +26,12 @@ void showMenu();
 void showScoreboard();
 void showCredits();
 
-const int gridSize = 10;
-char gridPositions[gridSize] = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '\0' };
-char gridLabels[gridSize];
+const int gameBoardSize = 10;
+char positionLabels3x3Grid[gameBoardSize] = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '\0' };
+char gameBoard[gameBoardSize];
 bool horizontalWin, verticalWin, diagonalWin, gameWon;
 int playerMove;
-int playerTurns;
+int maximumPlayerTurns;
 int currentTurn;
 char userInput;
 bool validUserInput;
@@ -329,7 +329,7 @@ void playGame()
 		{
 			currentTurn++;
 		}
-	} while (currentTurn < playerTurns && gameWon == false);
+	} while (currentTurn < maximumPlayerTurns && gameWon == false);
 
 	if (!gameWon)
 	{
@@ -345,25 +345,25 @@ void drawCurrentGameState()
 	std::cout << "                         Player 1 [X] vs. Player 2 [O]\n\n";
 	std::cout << "                                    " << playerOneScore << "  -  " << playerTwoScore << "\n\n";
 	std::cout << "                                     |   |   \n";
-	std::cout << "                                   " << gridLabels[1] << " | " << gridLabels[2] << " | " << gridLabels[3] << " \n";
+	std::cout << "                                   " << gameBoard[0] << " | " << gameBoard[1] << " | " << gameBoard[2] << " \n";
 	std::cout << "                                  ___|___|___\n";
 	std::cout << "                                     |   |   \n";
-	std::cout << "                                   " << gridLabels[4] << " | " << gridLabels[5] << " | " << gridLabels[6] << " \n";
+	std::cout << "                                   " << gameBoard[3] << " | " << gameBoard[4] << " | " << gameBoard[5] << " \n";
 	std::cout << "                                  ___|___|___\n";
 	std::cout << "                                     |   |   \n";
-	std::cout << "                                   " << gridLabels[7] << " | " << gridLabels[8] << " | " << gridLabels[9] << " \n";
+	std::cout << "                                   " << gameBoard[6] << " | " << gameBoard[7] << " | " << gameBoard[8] << " \n";
 	std::cout << "                                     |   |   \n\n";
 }
 
 void setUpGame()
 {
-	playerTurns = gridSize - 1;
+	maximumPlayerTurns = gameBoardSize - 1;
 	currentTurn = 1;
 
 	// Populate the grid spaces with place holder numbers
-	for (int i = 0; i < gridSize; i++) {
+	for (int i = 0; i < gameBoardSize; i++) {
 
-		gridLabels[i] = gridPositions[i];
+		gameBoard[i] = positionLabels3x3Grid[i];
 	}
 }
 
@@ -389,7 +389,7 @@ void getPlayerMove(char currentPlayerMark)
 		if (checkValidMove(playerMove))
 		{
 			validMove = true;
-			gridLabels[playerMove-1] = currentPlayerMark;
+			gameBoard[playerMove-1] = currentPlayerMark;
 			break;
 		}
 		else
@@ -401,9 +401,8 @@ void getPlayerMove(char currentPlayerMark)
 
 bool checkValidMove(int playerMove)
 {
-	if (playerMove >= 0 && playerMove < 10 && gridLabels[playerMove-1] == 'X' || playerMove >= 0 && playerMove < 10 && gridLabels[playerMove-1] == 'O')
+	if (playerMove >= 0 && playerMove < 10 && gameBoard[playerMove-1] == 'X' || playerMove >= 0 && playerMove < 10 && gameBoard[playerMove-1] == 'O')
 	{
-		std::cout << "That doesn't seem right. Try again.\n";
 		return false;
 	}
 	else
@@ -415,7 +414,7 @@ bool checkValidMove(int playerMove)
 void checkForWin()
 {
 	GameWinChecker gameWinChecker;
-	gameWon = gameWinChecker.checkIfSymbolHasWon(currentPlayerMark, gridLabels);
+	gameWon = gameWinChecker.checkIfSymbolHasWon(currentPlayerMark, gameBoard);
 }
 
 
