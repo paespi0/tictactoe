@@ -85,6 +85,84 @@ namespace GameWinCheckerTests
 			// Assert
 			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfEmptyGrid\' failed.");
 		}
+
+		TEST_METHOD(ExpectNotWonIfDraw)
+		{
+			// Arrange
+			char playerSymbol = 'X';
+			char gameState[] = {
+				'0',
+				'X', 'O', 'X',
+				'X', 'X', 'O',
+				'O', 'X', 'O',
+				'\0' };
+
+			// Act
+			GameWinChecker gameWinChecker;
+			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
+
+			// Assert
+			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfDraw\' failed.");
+		}
+
+		TEST_METHOD(ExpectNotWonIfNotEnoughMovesYet)
+		{
+			// Arrange
+			char playerSymbol = 'X';
+			char gameState[] = {
+				'0',
+				'X', '2', '3',
+				'4', 'O', '6',
+				'7', '8', '9',
+				'\0' };
+
+			// Act
+			GameWinChecker gameWinChecker;
+			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
+
+			// Assert
+			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfNotEnoughMovesYet\' failed.");
+		}
+
+		TEST_METHOD(ExpectNotWonIfSymbolIsNotPlayerMarker)
+		{
+			// Arrange
+			char playerSymbol = 'X';
+			char gameState[] = {
+				'0',
+				'@', 'X', '3',
+				'O', '@', '6',
+				'X', '8', '@',
+				'\0' };
+
+			// Act
+			GameWinChecker gameWinChecker;
+			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
+
+			// Assert
+			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfSymbolIsForeign\' failed.");
+		}
+
+		TEST_METHOD(ExpectNotWonIfSymbolIsLosingPlayerMarker)
+		{
+			// Arrange
+			char playerSymbol = 'O';
+			char gameState[] = {
+				'0',
+				'X', '2', '3',
+				'O', 'X', '6',
+				'X', 'O', 'X',
+
+				'\0' };
+
+			// Act
+			GameWinChecker gameWinChecker;
+			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
+
+			// Assert
+			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfSymbolIsForeign\' failed.");
+		}
+
 	};
 
 	TEST_CLASS(MoveValidator)
