@@ -1,5 +1,5 @@
 // TheGame.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// Copyright Tessa Power 2020
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -10,6 +10,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <conio.h>
+#include "GameWinChecker.h"
 
 void playGame();
 void printIntro();
@@ -36,6 +37,7 @@ char userInput;
 bool validUserInput;
 int playerOneScore = 0;
 int playerTwoScore = 0;
+char currentPlayerMark;
 
 int main()
 {
@@ -306,7 +308,7 @@ void playGame()
 
 	do
 	{
-		char currentPlayerMark;
+		
 		if (currentTurn % 2 == 1)
 		{
 			currentPlayerMark = 'X';
@@ -413,26 +415,12 @@ bool checkValidMove(int playerMove)
 
 void checkForWin()
 {
-	horizontalWin = ((gridLabels[1] == gridLabels[2]) && (gridLabels[2] == gridLabels[3]) ||
-		(gridLabels[4] == gridLabels[5]) && (gridLabels[5] == gridLabels[6]) ||
-		(gridLabels[7] == gridLabels[8]) && (gridLabels[8] == gridLabels[9]));
-
-	verticalWin = ((gridLabels[1] == gridLabels[4]) && (gridLabels[4] == gridLabels[7]) ||
-		(gridLabels[2] == gridLabels[5]) && (gridLabels[5] == gridLabels[8]) ||
-		(gridLabels[3] == gridLabels[6]) && (gridLabels[6] == gridLabels[9]));
-
-	diagonalWin = ((gridLabels[1] == gridLabels[5]) && (gridLabels[5] == gridLabels[9]) ||
-		(gridLabels[3] == gridLabels[5]) && (gridLabels[5] == gridLabels[7]));
-
-	if (horizontalWin || verticalWin || diagonalWin)
-	{
-		gameWon = true;
-	}
-	else
-	{
-		gameWon = false;
-	}
+	GameWinChecker gameWinChecker;
+	gameWon = gameWinChecker.checkIfSymbolHasWon(currentPlayerMark, gridLabels);
 }
+
+
+
 
 void printWinningMessage()
 {
