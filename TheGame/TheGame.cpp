@@ -10,6 +10,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <conio.h>
+#include "GameWinChecker.h"
 
 void playGame();
 void printIntro();
