@@ -389,7 +389,7 @@ void getPlayerMove(char currentPlayerMark)
 		if (checkValidMove(playerMove))
 		{
 			validMove = true;
-			gridLabels[playerMove] = currentPlayerMark;
+			gridLabels[playerMove-1] = currentPlayerMark;
 			break;
 		}
 		else
