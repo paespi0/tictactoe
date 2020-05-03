@@ -37,6 +37,7 @@ char userInput;
 bool validUserInput;
 int playerOneScore = 0;
 int playerTwoScore = 0;
+char currentPlayerMark;
 
 int main()
 {
@@ -307,7 +308,7 @@ void playGame()
 
 	do
 	{
-		char currentPlayerMark;
+		
 		if (currentTurn % 2 == 1)
 		{
 			currentPlayerMark = 'X';
