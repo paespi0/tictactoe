@@ -150,7 +150,6 @@ namespace GameWinCheckerTests
 	//};
 }
 
-
 /* Note to Self:
 You will only be able to unit test public functions this way.
 To unit test private functions, you must write your unit tests
