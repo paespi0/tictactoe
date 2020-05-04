@@ -13,12 +13,11 @@ namespace GameWinCheckerTests
 		TEST_METHOD(ExpectWonIfSymbolFillsHorizontalRow)
 		{
 			// Arrange
-			char playerSymbol = 'X'; // currently not using symbol to check winning combination
+			char playerSymbol = 'X';
 			char gameState[] = {
-				'0',
-				'1', 'O', '3',
+				'0', 'O', '2',
 				'X', 'X', 'X',
-				'7', '8', 'O',
+				'6', '7', 'O',
 				'\0' };
 
 			// Act
@@ -32,12 +31,11 @@ namespace GameWinCheckerTests
 		TEST_METHOD(ExpectWonIfSymbolFillsVerticalRow)
 		{
 			// Arrange
-			char playerSymbol = 'X'; // currently not using symbol to check winning combination
+			char playerSymbol = 'X';
 			char gameState[] = {
-				'0',
-				'O', 'X', '3',
-				'4', 'X', '6',
-				'O', 'X', '9',
+				'O', 'X', '2',
+				'3', 'X', '5',
+				'O', 'X', '8',
 				'\0' };
 
 			// Act
@@ -51,11 +49,10 @@ namespace GameWinCheckerTests
 		TEST_METHOD(ExpectWonIfSymbolFillsDiagonalRow)
 		{
 			// Arrange
-			char playerSymbol = 'X'; // currently not using symbol to check winning combination
+			char playerSymbol = 'X';
 			char gameState[] = {
-				'0',
-				'X', '2', '3',
-				'O', 'X', '6',
+				'X', '1', '2',
+				'O', 'X', '5',
 				'X', 'O', 'X',
 				'\0' };
 
@@ -72,10 +69,9 @@ namespace GameWinCheckerTests
 			// Arrange
 			char playerSymbol = 'X';
 			char gameState[] = {
-				'0',
-				'1', '2', '3', 
-				'4', '5', '6',
-				'7', '8', '9',
+				'0', '1', '2', 
+				'3', '4', '5',
+				'6', '7', '8',
 				'\0'};
 
 			// Act
@@ -91,7 +87,6 @@ namespace GameWinCheckerTests
 			// Arrange
 			char playerSymbol = 'X';
 			char gameState[] = {
-				'0',
 				'X', 'O', 'X',
 				'X', 'X', 'O',
 				'O', 'X', 'O',
@@ -110,10 +105,9 @@ namespace GameWinCheckerTests
 			// Arrange
 			char playerSymbol = 'X';
 			char gameState[] = {
-				'0',
-				'X', '2', '3',
-				'4', 'O', '6',
-				'7', '8', '9',
+				'X', '1', '2',
+				'3', 'O', '5',
+				'6', '7', '8',
 				'\0' };
 
 			// Act
@@ -129,10 +123,9 @@ namespace GameWinCheckerTests
 			// Arrange
 			char playerSymbol = 'X';
 			char gameState[] = {
-				'0',
-				'@', 'X', '3',
-				'O', '@', '6',
-				'X', '8', '@',
+				'@', 'X', '2',
+				'O', '@', '5',
+				'X', '7', '@',
 				'\0' };
 
 			// Act
@@ -148,11 +141,9 @@ namespace GameWinCheckerTests
 			// Arrange
 			char playerSymbol = 'O';
 			char gameState[] = {
-				'0',
-				'X', '2', '3',
-				'O', 'X', '6',
+				'X', '1', '2',
+				'O', 'X', '5',
 				'X', 'O', 'X',
-
 				'\0' };
 
 			// Act
