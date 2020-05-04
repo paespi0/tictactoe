@@ -25,7 +25,7 @@ namespace GameWinCheckerTests
 			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
 
 			// Assert
-			Assert::IsTrue(gameWon, L"Unit test \'ExpectWonIfSymbolFillsHorizontalRow\' failed.");
+			Assert::IsTrue(gameWon, L"More information here...");
 		}
 
 		TEST_METHOD(ExpectWon_SymbolFillsVerticalRow_WinningSymbol)
@@ -43,7 +43,7 @@ namespace GameWinCheckerTests
 			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
 
 			// Assert
-			Assert::IsTrue(gameWon, L"Unit test \'ExpectWonIfSymbolFillsVerticalRow\' failed.");
+			Assert::IsTrue(gameWon, L"More information here...");
 		}
 
 		TEST_METHOD(ExpectWon_SymbolFillsDiagonalRow_WinningSymbol)
@@ -61,7 +61,7 @@ namespace GameWinCheckerTests
 			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
 
 			// Assert
-			Assert::IsTrue(gameWon, L"Unit test \'ExpectWonIfSymbolFillsDiagonalRow\' failed.");
+			Assert::IsTrue(gameWon, L"More information here...");
 		}
 
 		TEST_METHOD(ExpectNotWon_GameStateEmpty)
@@ -80,7 +80,7 @@ namespace GameWinCheckerTests
 
 
 			// Assert
-			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfEmptyGrid\' failed.");
+			Assert::IsFalse(gameWon, L"More information here...");
 		}
 
 		TEST_METHOD(ExpectNotWon_GameStateDraw)
@@ -98,7 +98,7 @@ namespace GameWinCheckerTests
 			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
 
 			// Assert
-			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfDraw\' failed.");
+			Assert::IsFalse(gameWon, L"More information here...");
 		}
 
 		TEST_METHOD(ExpectNotWon_GameStateContainsNoWin)
@@ -116,7 +116,7 @@ namespace GameWinCheckerTests
 			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
 
 			// Assert
-			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfNotEnoughMovesYet\' failed.");
+			Assert::IsFalse(gameWon, L"More information here...");
 		}
 		// Name formula: Expect[Outcome]_GameState[condition]_Symbol[condition]
 		TEST_METHOD(ExpectNotWon_GameStateContainsWin_SymbolIsNotWinningSymbol)
@@ -134,7 +134,7 @@ namespace GameWinCheckerTests
 			bool gameWon = gameWinChecker.checkIfSymbolHasWon(symbol, gameState);
 
 			// Assert
-			Assert::IsFalse(gameWon, L"Extra information goes here...");
+			Assert::IsFalse(gameWon, L"More information here...");
 		}
 
 	};
