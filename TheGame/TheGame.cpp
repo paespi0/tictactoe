@@ -24,10 +24,10 @@ void askToPlayAgain();
 void getPlayerMove(char playerSymbol);
 bool checkValidMove(int playerMove);
 void checkForWin();
-void printWinningMessage();
-void showMenu();
-void showScoreboard();
-void showCredits();
+void printWinningMessage(); // TODO: use draw method to print winning message
+void showMenu(); // TODO: use draw method to show menu
+void showHighscoreMenu();
+void showCreditsMenu();
 
 const int gameBoardSize = 10;
 char gameState[gameBoardSize] = { };
@@ -126,12 +126,12 @@ void showMenu()
 		else if (userInput == '2')
 		{
 			validUserInput = true;
-			showScoreboard();
+			showHighscoreMenu();
 		}
 		else if (userInput == '3')
 		{
 			validUserInput = true;
-			showCredits();
+			showCreditsMenu();
 		}
 		else if (userInput)
 		{
@@ -261,7 +261,7 @@ void printInstructions()
 	}
 }
 
-void showScoreboard()
+void showHighscoreMenu()
 {
 	system("CLS");
 	std::cout << "                                +--------------+\n";
@@ -283,7 +283,7 @@ void showScoreboard()
 	}
 }
 
-void showCredits()
+void showCreditsMenu()
 {
 	system("CLS");
 	std::cout << "                                  +-----------+\n";
