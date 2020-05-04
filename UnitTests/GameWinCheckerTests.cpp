@@ -15,9 +15,9 @@ namespace GameWinCheckerTests
 			// Arrange
 			char playerSymbol = 'X';
 			char gameState[] = {
-				'0', 'O', '2',
+				'1', 'O', '3',
 				'X', 'X', 'X',
-				'6', '7', 'O',
+				'7', '8', 'O',
 				'\0' };
 
 			// Act
@@ -33,9 +33,9 @@ namespace GameWinCheckerTests
 			// Arrange
 			char playerSymbol = 'X';
 			char gameState[] = {
-				'O', 'X', '2',
-				'3', 'X', '5',
-				'O', 'X', '8',
+				'O', 'X', '3',
+				'4', 'X', '6',
+				'O', 'X', '9',
 				'\0' };
 
 			// Act
@@ -51,8 +51,8 @@ namespace GameWinCheckerTests
 			// Arrange
 			char playerSymbol = 'X';
 			char gameState[] = {
-				'X', '1', '2',
-				'O', 'X', '5',
+				'X', '2', '3',
+				'O', 'X', '6',
 				'X', 'O', 'X',
 				'\0' };
 
@@ -69,14 +69,15 @@ namespace GameWinCheckerTests
 			// Arrange
 			char playerSymbol = 'X';
 			char gameState[] = {
-				'0', '1', '2',
-				'3', '4', '5',
-				'6', '7', '8',
+				'1', '2', '3',
+				'4', '5', '6',
+				'7', '8', '9',
 				'\0'};
 
 			// Act
 			GameWinChecker gameWinChecker;
 			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
+
 
 			// Assert
 			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfEmptyGrid\' failed.");
@@ -105,9 +106,9 @@ namespace GameWinCheckerTests
 			// Arrange
 			char playerSymbol = 'X';
 			char gameState[] = {
-				'X', '1', '2',
-				'3', 'O', '5',
-				'6', '7', '8',
+				'X', '2', '3',
+				'4', 'O', '6',
+				'7', '8', '9',
 				'\0' };
 
 			// Act
@@ -141,8 +142,8 @@ namespace GameWinCheckerTests
 			// Arrange
 			char playerSymbol = 'O';
 			char gameState[] = {
-				'X', '1', '2',
-				'O', 'X', '5',
+				'X', '2', '3',
+				'O', 'X', '6',
 				'X', 'O', 'X',
 				'\0' };
 
