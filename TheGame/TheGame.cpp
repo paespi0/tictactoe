@@ -10,12 +10,15 @@
 #include <iostream>
 #include <stdlib.h>
 #include <conio.h>
+#include <string>
 #include "GameWinChecker.h"
 
 void playGame();
 void printIntro();
 void printInstructions();
-void drawCurrentGameState();
+std::string convertGameStateToVisualRepresentation(char gameState[]);
+std::string convertScoreToVisualRepresentation(int playerOneScore, int playerTwoScore);
+void draw(std::string stringToDrawOnScreen);
 void setUpGame();
 void askToPlayAgain();
 void getPlayerMove(char currentPlayerMark);
@@ -27,8 +30,9 @@ void showScoreboard();
 void showCredits();
 
 const int gameBoardSize = 10;
-char positionLabels3x3Grid[gameBoardSize] = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '\0' };
-char gameBoard[gameBoardSize];
+char gameState[gameBoardSize] = { };
+std::string gameBoard;
+std::string scoreBoard;
 bool horizontalWin, verticalWin, diagonalWin, gameWon;
 int playerMove;
 int maximumPlayerTurns;
@@ -320,7 +324,7 @@ void playGame()
 		}
 		
 		getPlayerMove(currentPlayerMark);
-		drawCurrentGameState();
+		convertGameStateToVisualRepresentation(gameState);
 		checkForWin();
 		if (gameWon) {
 			printWinningMessage();
@@ -342,17 +346,21 @@ void playGame()
 void drawCurrentGameState()
 {
 	system("CLS");
-	std::cout << "                         Player 1 [X] vs. Player 2 [O]\n\n";
-	std::cout << "                                    " << playerOneScore << "  -  " << playerTwoScore << "\n\n";
-	std::cout << "                                     |   |   \n";
-	std::cout << "                                   " << gameBoard[0] << " | " << gameBoard[1] << " | " << gameBoard[2] << " \n";
-	std::cout << "                                  ___|___|___\n";
-	std::cout << "                                     |   |   \n";
-	std::cout << "                                   " << gameBoard[3] << " | " << gameBoard[4] << " | " << gameBoard[5] << " \n";
-	std::cout << "                                  ___|___|___\n";
-	std::cout << "                                     |   |   \n";
-	std::cout << "                                   " << gameBoard[6] << " | " << gameBoard[7] << " | " << gameBoard[8] << " \n";
-	std::cout << "                                     |   |   \n\n";
+	std::cout << stringToDrawOnScreen;
+}
+
+std::string convertScoreToVisualRepresentation(int playerOneScore, int playerTwoScore)
+{
+	scoreBoard = "                         Player 1 [X] vs. Player 2 [O]\n\n                                    " + std::to_string(playerOneScore) + "  -  " + std::to_string(playerTwoScore) + "\n\n";
+	
+	return (scoreBoard);
+}
+
+std::string convertGameStateToVisualRepresentation(char gameState[])
+{
+	gameBoard = "                                     |   |   \n                                    " + std::to_string(gameState[0]+1) + " |  " + std::to_string(gameState[1]+1) + " |  " + std::to_string(gameState[2] + 1) + " \n                                  ___|___|___\n                                     |   |   \n                                   " + std::to_string(gameState[3] + 1) + " | " + std::to_string(gameState[4] + 1) + " | " + std::to_string(gameState[5] + 1) + " \n                                  ___|___|___\n                                     |   |   \n                                   " + std::to_string(gameState[6] + 1) + " | " + std::to_string(gameState[7] + 1) + " | " + std::to_string(gameState[8] + 1) + " \n                                     |   |   \n\n";
+
+	return (gameBoard);
 }
 
 void setUpGame()
