@@ -147,9 +147,6 @@ void showMenu()
 
 void printInstructions()
 {
-	//HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	//SetConsoleTextAttribute(hConsole, 2);
-
 	system("CLS");
 	std::cout << "                               +---------------+\n";
 	std::cout << "                               |  HOW TO PLAY  |\n";
