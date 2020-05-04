@@ -13,7 +13,7 @@ namespace GameWinCheckerTests
 		TEST_METHOD(ExpectWon_SymbolFillsHorizontalRow_WinningSymbol)
 		{
 			// Arrange
-			char playerSymbol = 'X';
+			char symbol = 'X';
 			char gameState[] = {
 				'1', 'O', '3',
 				'X', 'X', 'X',
@@ -22,7 +22,7 @@ namespace GameWinCheckerTests
 
 			// Act
 			GameWinChecker gameWinChecker;
-			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
+			bool gameWon = gameWinChecker.checkIfSymbolHasWon(symbol, gameState);
 
 			// Assert
 			Assert::IsTrue(gameWon, L"More information here...");
@@ -31,7 +31,7 @@ namespace GameWinCheckerTests
 		TEST_METHOD(ExpectWon_SymbolFillsVerticalRow_WinningSymbol)
 		{
 			// Arrange
-			char playerSymbol = 'X';
+			char symbol = 'X';
 			char gameState[] = {
 				'O', 'X', '3',
 				'4', 'X', '6',
@@ -40,7 +40,7 @@ namespace GameWinCheckerTests
 
 			// Act
 			GameWinChecker gameWinChecker;
-			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
+			bool gameWon = gameWinChecker.checkIfSymbolHasWon(symbol, gameState);
 
 			// Assert
 			Assert::IsTrue(gameWon, L"More information here...");
@@ -49,7 +49,7 @@ namespace GameWinCheckerTests
 		TEST_METHOD(ExpectWon_SymbolFillsDiagonalRow_WinningSymbol)
 		{
 			// Arrange
-			char playerSymbol = 'X';
+			char symbol = 'X';
 			char gameState[] = {
 				'X', '2', '3',
 				'O', 'X', '6',
@@ -58,7 +58,7 @@ namespace GameWinCheckerTests
 
 			// Act
 			GameWinChecker gameWinChecker;
-			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
+			bool gameWon = gameWinChecker.checkIfSymbolHasWon(symbol, gameState);
 
 			// Assert
 			Assert::IsTrue(gameWon, L"More information here...");
@@ -67,7 +67,7 @@ namespace GameWinCheckerTests
 		TEST_METHOD(ExpectNotWon_GameStateEmpty)
 		{
 			// Arrange
-			char playerSymbol = 'X';
+			char symbol = 'X';
 			char gameState[] = {
 				'1', '2', '3',
 				'4', '5', '6',
@@ -76,7 +76,7 @@ namespace GameWinCheckerTests
 
 			// Act
 			GameWinChecker gameWinChecker;
-			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
+			bool gameWon = gameWinChecker.checkIfSymbolHasWon(symbol, gameState);
 
 
 			// Assert
@@ -86,7 +86,7 @@ namespace GameWinCheckerTests
 		TEST_METHOD(ExpectNotWon_GameStateDraw)
 		{
 			// Arrange
-			char playerSymbol = 'X';
+			char symbol = 'X';
 			char gameState[] = {
 				'X', 'O', 'X',
 				'X', 'X', 'O',
@@ -95,7 +95,7 @@ namespace GameWinCheckerTests
 
 			// Act
 			GameWinChecker gameWinChecker;
-			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
+			bool gameWon = gameWinChecker.checkIfSymbolHasWon(symbol, gameState);
 
 			// Assert
 			Assert::IsFalse(gameWon, L"More information here...");
@@ -104,7 +104,7 @@ namespace GameWinCheckerTests
 		TEST_METHOD(ExpectNotWon_GameStateContainsNoWin)
 		{
 			// Arrange
-			char playerSymbol = 'X';
+			char symbol = 'X';
 			char gameState[] = {
 				'X', '2', '3',
 				'4', 'O', '6',
@@ -113,7 +113,7 @@ namespace GameWinCheckerTests
 
 			// Act
 			GameWinChecker gameWinChecker;
-			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
+			bool gameWon = gameWinChecker.checkIfSymbolHasWon(symbol, gameState);
 
 			// Assert
 			Assert::IsFalse(gameWon, L"More information here...");
