@@ -122,25 +122,7 @@ namespace GameWinCheckerTests
 		TEST_METHOD(ExpectNotWon_GameStateContainsWin_SymbolIsNotWinningSymbol)
 		{
 			// Arrange
-			char playerSymbol = 'X';
-			char gameState[] = {
-				'@', 'X', '2',
-				'O', '@', '5',
-				'X', '7', '@',
-				'\0' };
-
-			// Act
-			GameWinChecker gameWinChecker;
-			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
-
-			// Assert
-			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfSymbolIsForeign\' failed.");
-		}
-
-		TEST_METHOD(ExpectNotWonIfSymbolIsLosingPlayerMarker)
-		{
-			// Arrange
-			char playerSymbol = 'O';
+			char symbol = 'O';
 			char gameState[] = {
 				'X', '2', '3',
 				'O', 'X', '6',
@@ -149,7 +131,7 @@ namespace GameWinCheckerTests
 
 			// Act
 			GameWinChecker gameWinChecker;
-			bool gameWon = gameWinChecker.checkIfSymbolHasWon(playerSymbol, gameState);
+			bool gameWon = gameWinChecker.checkIfSymbolHasWon(symbol, gameState);
 
 			// Assert
 			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfSymbolIsLosingPlayerMarker\' failed.");
