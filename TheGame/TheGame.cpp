@@ -321,7 +321,7 @@ void playGame()
 		}
 		
 		getPlayerMove(currentPlayerMark);
-		convertGameStateToVisualRepresentation(gameState);
+		draw(convertGameStateToVisualRepresentation(gameState));
 		checkForWin();
 		if (gameWon) {
 			printWinningMessage();
