@@ -10,7 +10,7 @@ namespace GameWinCheckerTests
 	{
 	public:
 		
-		TEST_METHOD(ExpectWonIfSymbolFillsHorizontalRow)
+		TEST_METHOD(ExpectWon_SymbolFillsHorizontalRow)
 		{
 			// Arrange
 			char playerSymbol = 'X';
@@ -28,7 +28,7 @@ namespace GameWinCheckerTests
 			Assert::IsTrue(gameWon, L"Unit test \'ExpectWonIfSymbolFillsHorizontalRow\' failed.");
 		}
 
-		TEST_METHOD(ExpectWonIfSymbolFillsVerticalRow)
+		TEST_METHOD(ExpectWon_SymbolFillsVerticalRow)
 		{
 			// Arrange
 			char playerSymbol = 'X';
@@ -46,7 +46,7 @@ namespace GameWinCheckerTests
 			Assert::IsTrue(gameWon, L"Unit test \'ExpectWonIfSymbolFillsVerticalRow\' failed.");
 		}
 
-		TEST_METHOD(ExpectWonIfSymbolFillsDiagonalRow)
+		TEST_METHOD(ExpectWon_SymbolFillsDiagonalRow)
 		{
 			// Arrange
 			char playerSymbol = 'X';
@@ -64,7 +64,7 @@ namespace GameWinCheckerTests
 			Assert::IsTrue(gameWon, L"Unit test \'ExpectWonIfSymbolFillsDiagonalRow\' failed.");
 		}
 
-		TEST_METHOD(ExpectNotWonIfEmptyGrid)
+		TEST_METHOD(ExpectNotWon_GameStateEmpty)
 		{
 			// Arrange
 			char playerSymbol = 'X';
@@ -82,7 +82,7 @@ namespace GameWinCheckerTests
 			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfEmptyGrid\' failed.");
 		}
 
-		TEST_METHOD(ExpectNotWonIfDraw)
+		TEST_METHOD(ExpectNotWon_GameStateDraw)
 		{
 			// Arrange
 			char playerSymbol = 'X';
@@ -100,7 +100,7 @@ namespace GameWinCheckerTests
 			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfDraw\' failed.");
 		}
 
-		TEST_METHOD(ExpectNotWonIfNotEnoughMovesYet)
+		TEST_METHOD(ExpectNotWon_IfNotEnoughMovesYet) // Name formula: Expect[Outcome]_GameState[condition]_Symbol[condition]
 		{
 			// Arrange
 			char playerSymbol = 'X';
@@ -117,8 +117,8 @@ namespace GameWinCheckerTests
 			// Assert
 			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfNotEnoughMovesYet\' failed.");
 		}
-
-		TEST_METHOD(ExpectNotWonIfSymbolIsNotPlayerMarker)
+		// Name formula: Expect[Outcome]_GameState[condition]_Symbol[condition]
+		TEST_METHOD(ExpectNotWon_GameStateContainsWin_SymbolIsNotWinningSymbol)
 		{
 			// Arrange
 			char playerSymbol = 'X';
