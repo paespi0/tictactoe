@@ -364,7 +364,11 @@ void setUpGame()
 	maximumPlayerTurns = gameBoardSize - 1;
 	currentTurn = 1;
 
+<<<<<<< HEAD
 	// Reset the gameState by removing all elements from the array
+=======
+	// Populate the game board spaces with place holder numbers
+>>>>>>> a0328967334cc52caa865162f740cd834cf99454
 	for (int i = 0; i < gameBoardSize; i++) {
 		gameState[i] = { };
 	}
