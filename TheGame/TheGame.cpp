@@ -308,7 +308,7 @@ void showCredits()
 void playGame()
 {
 	setUpGame();
-	drawCurrentGameState();
+	draw(convertGameStateToVisualRepresentation(gameState));
 
 	do
 	{
@@ -343,8 +343,7 @@ void playGame()
 	askToPlayAgain();
 }
 
-void drawCurrentGameState()
-{
+void draw(std::string stringToDrawOnScreen) {
 	system("CLS");
 	std::cout << stringToDrawOnScreen;
 }
