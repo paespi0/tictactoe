@@ -10,7 +10,7 @@ namespace GameWinCheckerTests
 	{
 	public:
 		
-		TEST_METHOD(ExpectWon_SymbolFillsHorizontalRow)
+		TEST_METHOD(ExpectWon_SymbolFillsHorizontalRow_WinningSymbol)
 		{
 			// Arrange
 			char playerSymbol = 'X';
@@ -28,7 +28,7 @@ namespace GameWinCheckerTests
 			Assert::IsTrue(gameWon, L"Unit test \'ExpectWonIfSymbolFillsHorizontalRow\' failed.");
 		}
 
-		TEST_METHOD(ExpectWon_SymbolFillsVerticalRow)
+		TEST_METHOD(ExpectWon_SymbolFillsVerticalRow_WinningSymbol)
 		{
 			// Arrange
 			char playerSymbol = 'X';
@@ -46,7 +46,7 @@ namespace GameWinCheckerTests
 			Assert::IsTrue(gameWon, L"Unit test \'ExpectWonIfSymbolFillsVerticalRow\' failed.");
 		}
 
-		TEST_METHOD(ExpectWon_SymbolFillsDiagonalRow)
+		TEST_METHOD(ExpectWon_SymbolFillsDiagonalRow_WinningSymbol)
 		{
 			// Arrange
 			char playerSymbol = 'X';
@@ -101,7 +101,7 @@ namespace GameWinCheckerTests
 			Assert::IsFalse(gameWon, L"Unit test \'ExpectNotWonIfDraw\' failed.");
 		}
 
-		TEST_METHOD(ExpectNotWon_IfNotEnoughMovesYet) // Name formula: Expect[Outcome]_GameState[condition]_Symbol[condition]
+		TEST_METHOD(ExpectNotWon_GameStateContainsNoWin)
 		{
 			// Arrange
 			char playerSymbol = 'X';
