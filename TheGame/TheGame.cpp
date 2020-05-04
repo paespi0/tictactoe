@@ -21,7 +21,7 @@ std::string convertScoreToVisualRepresentation(int playerOneScore, int playerTwo
 void draw(std::string stringToDrawOnScreen);
 void setUpGame();
 void askToPlayAgain();
-void getPlayerMove(char currentPlayerMark);
+void getPlayerMove(char playerSymbol);
 bool checkValidMove(int playerMove);
 void checkForWin();
 void printWinningMessage();
@@ -396,7 +396,7 @@ void getPlayerMove(char currentPlayerMark)
 		if (checkValidMove(playerMove))
 		{
 			validMove = true;
-			gameBoard[playerMove-1] = currentPlayerMark;
+			gameState[playerMove-1] = currentPlayerMark;
 			break;
 		}
 		else
@@ -408,7 +408,7 @@ void getPlayerMove(char currentPlayerMark)
 
 bool checkValidMove(int playerMove)
 {
-	if (playerMove >= 0 && playerMove < 10 && gameBoard[playerMove-1] == 'X' || playerMove >= 0 && playerMove < 10 && gameBoard[playerMove-1] == 'O')
+	if (playerMove >= 0 && playerMove < 10 && gameState[playerMove-1] == 'X' || playerMove >= 0 && playerMove < 10 && gameState[playerMove-1] == 'O')
 	{
 		return false;
 	}
@@ -421,7 +421,7 @@ bool checkValidMove(int playerMove)
 void checkForWin()
 {
 	GameWinChecker gameWinChecker;
-	gameWon = gameWinChecker.checkIfSymbolHasWon(currentPlayerMark, gameBoard);
+	gameWon = gameWinChecker.checkIfSymbolHasWon(currentPlayerMark, gameState);
 }
 
 
