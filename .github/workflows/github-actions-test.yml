@@ -1,26 +1,23 @@
-# This workflow prepares a c++ environment 
+# This workflow sends a slack notification
 
-name: lint-build-test
+name: slack-notification
 
 on:
-  push:
-    branches:
-      - test/*
+  issues:
+    - test/*
 
 jobs:
-  slackNotification:
-    name: Slack Notification
+  slack-notification:
     runs-on: windows-latest
-    
+    name: Sends a message to Slack when an issue is made.
     steps:
-    - uses: actions/checkout@v2
-    - name: Slack Notification
-      uses: rtCamp/action-slack-notify@v2.0.0
-      env:
-        SLACK_CHANNEL: github
-        SLACK_COLOR: '#1ABC9C'
-        SLACK_ICON_EMOJI: ':speaking_head_in_silhouette:'
-        SLACK_MESSAGE: 'Noice. Smort. :rocket:'
-        SLACK_TITLE: Title Goes Here
-        SLACK_USERNAME: github-actions-bot
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      - name: Send message to Slack API
+        uses: archive/github-actions-slack@v1.0.0
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: github
+          slack-text: Hello! Something is burning! Or not...
+          slack-optional-icon_emoji: ":fire:"
+          slack-optional-as_user: false
+      - name: Result from "Send Message"
+        run: echo "The result was ${{ steps.notify.outputs.slack-result }}"
