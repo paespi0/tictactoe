@@ -6,8 +6,6 @@ on:
   issue_comment:
     types:
       - created
-    branches:
-      - test/*
 
 jobs:
   slack-notification:
