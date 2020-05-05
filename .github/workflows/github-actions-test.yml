@@ -19,6 +19,5 @@ jobs:
           slack-channel: github
           slack-text: Hello! Something is burning! Or not...
           slack-optional-icon_emoji: ":fire:"
-          slack-optional-as_user: false
       - name: Result from "Send Message"
         run: echo "The result was ${{ steps.notify.outputs.slack-result }}"
