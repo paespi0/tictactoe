@@ -10,7 +10,7 @@ on:
 jobs:
   slack-notification:
     runs-on: windows-latest
-    name: Sends a message to Slack when an issue is made.
+    name: Sends a message to Slack when an issue comment is made.
     steps:
       - name: Send message to Slack API
         uses: archive/github-actions-slack@v1.0.0
