@@ -3,8 +3,11 @@
 name: slack-notification
 
 on:
-  issues:
-    - test/*
+  issue_comment:
+    types:
+      - created
+    branches:
+      - test/*
 
 jobs:
   slack-notification:
