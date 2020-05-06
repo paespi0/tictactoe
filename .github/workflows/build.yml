@@ -12,9 +12,6 @@ jobs:
   setup-msbuild:
     runs-on: windows-latest
     name: Set up MSBuild into PATH to use later
-    defaults:
-      run:
-        shell: cmd
 
     steps:
       - name: Checkout Code
@@ -29,11 +26,7 @@ jobs:
     runs-on: windows-latest
     name: Run MSBuild to build a VS solution
     needs: setup-msbuild
-    defaults:
-      run:
-        shell: cmd
     
     steps:
     - name: MSBuild
-      working-directory: workspace
-      run: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\BuildTools\MSBuild\Current\Bin msbuild.exe -ver
+      run: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\BuildTools\MSBuild\Current\Bin .\msbuild.exe -ver
