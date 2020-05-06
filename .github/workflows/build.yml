@@ -14,14 +14,15 @@ jobs:
     name: Setup and run MSBuild
 
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v2.1.0
-        id: checkout-code
+        id: checkout_code
         
-      - name: Setup MSBuild Path
+      - name: Setup MSBuild path
         uses: warrenbuckley/Setup-MSBuild@v1
-        id: setup-msbuild-path
+        id: setup_msbuild
         
-      - name: MSBuild
+      - name: Run MSBuild
+        id: run_msbuild
         working-directory: ${{ github.workspace }}
         run: msbuild .\TheGame.sln
