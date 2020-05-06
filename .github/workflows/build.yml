@@ -9,7 +9,7 @@ on:
 
 jobs:
 
-  setup-msbuild:
+  run-msbuild:
     runs-on: windows-latest
     name: Set up MSBuild into PATH to use later
 
@@ -24,3 +24,8 @@ jobs:
         
       - name: MSBuild
         run: msbuild -version
+        
+      - name: show directory contents
+        run: |
+          D:\a\tictactoe\tictactoe
+          dir
