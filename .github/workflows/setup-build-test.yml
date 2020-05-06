@@ -1,6 +1,6 @@
 # This workflow sets up MSBuild and VSTest everytime commits are pushed to master, feature or test branches.
 
-name: setup-build-test
+name: Setup - Build - Test
 
 on:
   push:
@@ -88,6 +88,12 @@ jobs:
         - name: Run VSTest
           id: run-VSTest
           run: echo vstest.console.exe /github/workspace/TheGame/Debug/UnitTests.dll
+          continue-on-error: true
+          
+        - name: Dump job context
+          env:
+            JOB_CONTEXT: ${{ toJson(job) }}
+          run: echo "$JOB_CONTEXT" 
     
         - name: Send message to Slack with outcome job
           uses: archive/github-actions-slack@v1.0.0
@@ -100,7 +106,7 @@ jobs:
   notify-slack-end:
     runs-on: windows-latest
     name: Notify Slack of workflow completion
-    needs: [ notify-slack-start, setup-msbuild, run-msbuild, setup-vstest ]
+    needs: [ notify-slack-start, setup-msbuild, run-msbuild, setup-vstest, run-vstest ]
 
     steps:
       - name: Send message to Slack
