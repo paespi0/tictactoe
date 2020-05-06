@@ -22,7 +22,7 @@ jobs:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: github
           slack-optional-icon_emoji: ":nerd_face:"
-          slack-text: "`${{ github.event_name }}` on `${{ github.ref }}` triggered `${{ github.workflow }}`"
+          slack-text: "`${{ github.event_name }}` on `${{ github.ref }}` triggered `${{ github.workflow }}`!"
 
   setup-msbuild:
     runs-on: windows-latest
@@ -43,7 +43,7 @@ jobs:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: github
           slack-optional-icon_emoji: ":nerd_face:"
-          slack-text: "${{ github.job }} - ${{ job.status }}"
+          slack-text: "`${{ github.job }}` - ${{ job.status }}"
 
   setup-vstest:
     runs-on: windows-latest
@@ -57,6 +57,9 @@ jobs:
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.2
         
+      - name: Debug Build UWP app
+        run: msbuild .\dev\CustomMayd.Services.Serialization\CustomMayd.Services.Serialization.sln /p:Configuration=Debug /p:AppxBundlePlatforms="x86|x64|ARM" /p:AppxPackageDir=".\AppxPackages" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload
+        
       - name: Run VSTest
         id: run-VSTest
         run: vstest.console.exe /Platform:x64 .\test\CustomMayd.Services.Serialization.Tests\AppxPackages\CustomMayd.Services.Serialization.Tests_1.0.0.0_Debug_Test\CustomMayd.Services.Serialization.Tests_1.0.0.0_x86_Debug.appx
@@ -67,7 +70,7 @@ jobs:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: github
           slack-optional-icon_emoji: ":nerd_face:"
-          slack-text: "${{ github.job }} - ${{ job.status }}"
+          slack-text: "`${{ github.job }}` - ${{ job.status }}"
   
   notify-slack-end:
     runs-on: windows-latest
@@ -80,4 +83,4 @@ jobs:
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: github
-          slack-text: "Workflow `${{ github.workflow }}` complete! :tada: Outcome: "
+          slack-text: "Workflow `${{ github.workflow }}` complete! :tada:"
