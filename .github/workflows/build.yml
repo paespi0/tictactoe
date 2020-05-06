@@ -35,4 +35,4 @@ jobs:
     
     steps:
     - name: MSBuild
-      run: msbuild TheGame.sln
+      run: msbuild -ver
