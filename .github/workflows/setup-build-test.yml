@@ -97,17 +97,17 @@ jobs:
     steps:
         - name: Run VSTest
           id: run-VSTest
-          run: echo vstest.console.exe /github/workspace/TheGame/Debug/UnitTests.dll
- #         run: echo "::set-output name=test-results::$(vstest.console.exe /github/workspace/TheGame/Debug/UnitTests.dll)\n"
-          continue-on-error: true
+          env:
+            test-results: string
+          run: echo "::set-env name=test-results::$(vstest.console.exe /github/workspace/TheGame/Debug/UnitTests.dll)"
 
-       # - name: Send test results to Slack
-       #   uses: archive/github-actions-slack@v1.0.0
-       #   with:
-       #     slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
-       #     slack-channel: github
-       #     slack-optional-icon_emoji: ":nerd_face:"
-       #     slack-text: "${{ steps.run-VSTest.outputs.test-results }}"
+        - name: Send test results to Slack
+          uses: archive/github-actions-slack@v1.0.0
+          with:
+            slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+            slack-channel: github
+            slack-optional-icon_emoji: ":nerd_face:"
+            slack-text: "$test-results"
     
         - name: Send message to Slack with outcome job
           uses: archive/github-actions-slack@v1.0.0
