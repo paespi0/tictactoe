@@ -16,17 +16,17 @@ jobs:
     name: Notify Slack of workflow starting
     
     steps:
-      - name: Notify Slack
+      - name: Send message to Slack
         uses: archive/github-actions-slack@v1.0.0
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: github
           slack-optional-icon_emoji: ":nerd_face:"
-          slack-text: "`${{ github.event_name }}` on `${{ github.ref }}` triggered `${{ github.workflow }}`!"
+          slack-text: ":new: `${{ github.event_name }}` on `${{ github.ref }}` triggered `${{ github.workflow }}`!"
 
   setup-msbuild:
     runs-on: windows-latest
-    name: Helps set up MSBuild into PATH for later usage
+    name: Set up MSBuild into PATH to use later
     
     steps:
       - name: Checkout code
@@ -37,48 +37,63 @@ jobs:
         uses: microsoft/setup-msbuild@v1
         id: setup-msbuild-path
 
-      - name: Send message to Slack with outcome of this job.
+      - name: Send message to Slack with outcome of this job
         uses: archive/github-actions-slack@v1.0.0
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: github
           slack-optional-icon_emoji: ":nerd_face:"
-          slack-text: "`${{ github.job }}` - ${{ job.status }}"
-
-  setup-vstest:
-    runs-on: windows-latest
-    name: Helps set up VSTest into Path for later usage
-    
-    steps:
-      - name: Setup VSTest Path
-        uses: darenm/Setup-VSTest@v1
-        id: setup-vstest-path
-        
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.2
-        
-      - name: Debug Build UWP app
-        run: msbuild .\dev\CustomMayd.Services.Serialization\CustomMayd.Services.Serialization.sln /p:Configuration=Debug /p:AppxBundlePlatforms="x86|x64|ARM" /p:AppxPackageDir=".\AppxPackages" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload
-        
-      - name: Run VSTest
-        id: run-VSTest
-        run: vstest.console.exe /Platform:x64 .\test\CustomMayd.Services.Serialization.Tests\AppxPackages\CustomMayd.Services.Serialization.Tests_1.0.0.0_Debug_Test\CustomMayd.Services.Serialization.Tests_1.0.0.0_x86_Debug.appx
-
-      - name: Send message to Slack with outcome of this job.
-        uses: archive/github-actions-slack@v1.0.0
-        with:
-          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
-          slack-channel: github
-          slack-optional-icon_emoji: ":nerd_face:"
-          slack-text: "`${{ github.job }}` - ${{ job.status }}"
+          slack-text: ":heavy_check_mark: `${{ github.job }}` complete"
   
+  run-msbuild:
+    runs-on: windows-latest
+    name: Run MSBuild to build a VS solution
+    steps:
+      - name: Run MSBuild to build the VS solution
+        run: msbuild /github/workspace/TheGame.sln
+        
+      - name: Send message to Slack with outcome of this job
+        uses: archive/github-actions-slack@v1.0.0
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: github
+          slack-optional-icon_emoji: ":nerd_face:"
+          slack-text: ":heavy_check_mark: `${{ github.job }}` complete"
+
+#  setup-vstest:
+#    runs-on: windows-latest
+#    name: Set up VSTest into Path to use later
+#    
+#    steps:
+#      - name: Setup VSTest Path
+#        uses: darenm/Setup-VSTest@v1
+#        id: setup-vstest-path
+#        
+#      - name: Setup NuGet
+#        uses: NuGet/setup-nuget@v1.0.2
+#        
+#      - name: Debug Build UWP app
+#        run: msbuild .\dev\CustomMayd.Services.Serialization\CustomMayd.Services.Serialization.sln /p:Configuration=Debug /p:AppxBundlePlatforms="x86|x64|ARM" /p:AppxPackageDir=".\AppxPackages" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload
+#        
+#      - name: Run VSTest
+#        id: run-VSTest
+#        run: vstest.console.exe /Platform:x64 .\test\CustomMayd.Services.Serialization.Tests\AppxPackages\CustomMayd.Services.Serialization.Tests_1.0.0.0_Debug_Test\CustomMayd.Services.Serialization.Tests_1.0.0.0_x86_Debug.appx
+#
+#      - name: Send message to Slack with outcome of this job
+#        uses: archive/github-actions-slack@v1.0.0
+#        with:
+#          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+#          slack-channel: github
+#          slack-optional-icon_emoji: ":nerd_face:"
+#          slack-text: ":heavy_check_mark: `${{ github.job }}` complete"
+
   notify-slack-end:
     runs-on: windows-latest
-    name: Sends a Slack notification with the outcome of the workflow on completion.
-    needs: [ notify-slack-start, setup-msbuild, setup-vstest ]
+    name: Notify Slack of workflow completion
+    needs: [ notify-slack-start, setup-msbuild ]
 
     steps:
-      - name: Notify Slack of workflow completing
+      - name: Send message to Slack
         uses: archive/github-actions-slack@v1.0.0
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
