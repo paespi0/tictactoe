@@ -11,6 +11,7 @@ on:
       - master
 
 jobs:
+  
   notify-slack-start:
     runs-on: windows-latest
     name: Notify Slack of workflow starting
@@ -27,7 +28,7 @@ jobs:
   setup-msbuild:
     runs-on: windows-latest
     name: Set up MSBuild into PATH to use later
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -49,7 +50,10 @@ jobs:
     runs-on: windows-latest
     name: Run MSBuild to build a VS solution
     needs: setup-msbuild
-    
+    defaults:
+      run:
+        shell: cmd
+
     steps:
       - name: Run MSBuild to build the VS solution
         run: echo msbuild.exe /github/workspace/TheGame.sln
@@ -83,6 +87,9 @@ jobs:
     runs-on: windows-latest
     name: Run VSTest to run the VS unit tests
     needs: [ setup-vstest, run-msbuild ]
+    defaults:
+      run:
+        shell: cmd
     
     steps:
         - name: Run VSTest
