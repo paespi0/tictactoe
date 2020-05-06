@@ -53,7 +53,7 @@ jobs:
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: github
-          slack-text: Job ${{ github.job }}: ${{ job.status }}
+          slack-text: Job ${{ github.job }} - ${{ job.status }}
   
   slack-notification:
     runs-on: windows-latest
