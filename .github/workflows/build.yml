@@ -24,4 +24,4 @@ jobs:
         
       - name: MSBuild
         working-directory: workspace
-        run: msbuild TheGame\*.sln
+        run: msbuild .\TheGame\*.sln
