@@ -35,5 +35,5 @@ jobs:
     
     steps:
     - name: MSBuild
-      working-directory: src
+      working-directory: $GITHUB_WORKSPACE/TheGame/
       run: msbuild TheGame.vcxproj
