@@ -1,0 +1,71 @@
+# This workflow sets up MSBuild and VSTest everytime commits are pushed to master, feature or test branches.
+
+name: setup-build-test
+
+on:
+  push:
+    branches: 
+      - master
+      - feature/*
+      - test/*
+
+jobs:
+  setup-msbuild-vstest:
+    runs-on: windows-latest
+    name: Helps set up MSBuild and VSTest into PATH for later usage
+    
+    steps:   
+      - name: Checkout code
+        uses: actions/checkout@v2
+        # if: ${{ success() }}
+        #  run: echo 'Code checkout: ${{ steps.<step id>.outcome }}'
+        
+      - name: Setup MSBuild Path
+        uses: microsoft/setup-msbuild@v1
+        # if ${{ success() }}
+        # run: echo 'MSBuild setup: ${{ steps.<step.id>.outcome }}'
+
+      - name: Setup VSTest Path
+        uses: darenm/Setup-VSTest@v1
+        # if ${{ success() }}
+        # run: echo 'VSTest setup: ${{ steps.<step.id>.outcome }}'
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.2
+        # if ${{ success() }}
+        # run: echo 'NuGet setup: ${{ steps.<step.id>.outcome }}'
+  
+      - name: Restore packages
+        run: msbuild .\dev\CustomMayd.Services.Serialization\CustomMayd.Services.Serialization.sln -t:restore
+        # if ${{ success() }}
+        # run: echo 'Restore packages: ${{ steps.<step.id>.outcome }}'
+  
+      - name: Debug Build UWP app
+        run: msbuild .\dev\CustomMayd.Services.Serialization\CustomMayd.Services.Serialization.sln /p:Configuration=Debug /p:AppxBundlePlatforms="x86|x64|ARM" /p:AppxPackageDir=".\AppxPackages" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload
+        # if ${{ success() }}
+        # run: echo 'Debug Build UWP app: ${{ steps.<step.id>.outcome }}'
+        
+      - name: VSTest
+        run: vstest.console.exe /Platform:x64 .\test\CustomMayd.Services.Serialization.Tests\AppxPackages\CustomMayd.Services.Serialization.Tests_1.0.0.0_Debug_Test\CustomMayd.Services.Serialization.Tests_1.0.0.0_x86_Debug.appx
+        # if ${{ success() }}
+        # run: echo 'Run VSTest: ${{ steps.<step.id>.outcome }}'
+  
+      - name: Send message to Slack with outcome of this job.
+        uses: archive/github-actions-slack@v1.0.0
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: github
+          slack-text: Job ${{ github.job }}: ${{ job.status }}
+  
+  slack-notification:
+    runs-on: windows-latest
+    name: Sends a Slack notification with the outcome of the workflow on completion.
+
+    steps:
+      - name: Send notification to Slack
+        uses: archive/github-actions-slack@v1.0.0
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: github
+          slack-text: Workflow ${
+            { github.workflow }} complete :ta-da:
