@@ -1,0 +1,41 @@
+# This workflow sets up MSBuild and builds the VS solution.
+
+name: Build
+
+on:
+  push:
+    branches: 
+      - github-actions
+  pull_request:
+    branches:
+      - master
+
+jobs:
+
+  setup-msbuild:
+    runs-on: windows-latest
+    name: Set up MSBuild into PATH to use later
+    defaults:
+      run:
+        shell: cmd
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        id: checkout-code
+        
+      - name: Setup MSBuild Path
+        uses: microsoft/setup-msbuild@v1
+        id: setup-msbuild-path
+  
+  run-msbuild:
+    runs-on: windows-latest
+    name: Run MSBuild to build a VS solution
+    needs: setup-msbuild
+    defaults:
+      run:
+        shell: cmd
+
+    steps:
+      - name: Run MSBuild to build the VS solution
+        run: echo msbuild.exe ./github/workspace/TheGame.sln
