@@ -1,4 +1,4 @@
-# This workflow sets up MSBuild and builds the VS solution.
+# This workflow sets up and runs MSBuild to build a Visual Studio solution.
 
 name: Build
 
@@ -24,4 +24,4 @@ jobs:
         
       - name: MSBuild
         working-directory: ${{ github.workspace }}
-        run: msbuild .\*.sln
+        run: msbuild .\TheGame.sln
