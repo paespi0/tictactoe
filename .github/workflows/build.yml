@@ -23,8 +23,5 @@ jobs:
         id: setup-msbuild-path
         
       - name: MSBuild
-        id: msbuildPath
-        run: msbuild -version
-    
-      - name: echo msbuild path
-        run: echo "${{ steps.setup-msbuild.outputs.msbuildPath }}"
+        working-directory: workspace
+        run: msbuild TheGame\*.sln
