@@ -15,49 +15,65 @@ jobs:
     steps:   
       - name: Checkout code
         uses: actions/checkout@v2
-        # if: ${{ success() }}
-        #  run: echo 'Code checkout: ${{ steps.<step id>.outcome }}'
+        id: checkout-code
+      - name: If Successful
+        if: ${{ success() }}
+        run: echo 'Code checkout - ${{ steps.checkout-code.outcome }}'
         
       - name: Setup MSBuild Path
         uses: microsoft/setup-msbuild@v1
-        # if ${{ success() }}
-        # run: echo 'MSBuild setup: ${{ steps.<step.id>.outcome }}'
+        id: setup-msbuild-path
+      - name: If Successful
+        if: ${{ success() }}
+        run: echo 'MSBuild setup - ${{ steps.setup-msbuild-path.outcome }}'
 
       - name: Setup VSTest Path
         uses: darenm/Setup-VSTest@v1
-        # if ${{ success() }}
-        # run: echo 'VSTest setup: ${{ steps.<step.id>.outcome }}'
+        id: setup-vstest-path
+      - name: log-outcome
+        if: ${{ success() }}
+        run: echo 'VSTest setup - ${{ steps.setup-vstest-path.outcome }}'
 
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.2
-        # if ${{ success() }}
-        # run: echo 'NuGet setup: ${{ steps.<step.id>.outcome }}'
+        id: setup-nuget
+      - name: If Successful
+        if: ${{ success() }}
+        run: echo 'NuGet setup - ${{ steps.setup-nuget.outcome }}'
   
-      - name: Restore packages
+      - name: Restore Packages
+        id: restore-packages
         run: msbuild .\dev\CustomMayd.Services.Serialization\CustomMayd.Services.Serialization.sln -t:restore
-        # if ${{ success() }}
-        # run: echo 'Restore packages: ${{ steps.<step.id>.outcome }}'
+      - name: If Successful
+        if: ${{ success() }}
+        run: echo 'Restore packages - ${{ steps.restore-packages.outcome }}'
   
       - name: Debug Build UWP app
+        id: debug-build-uwp-app
         run: msbuild .\dev\CustomMayd.Services.Serialization\CustomMayd.Services.Serialization.sln /p:Configuration=Debug /p:AppxBundlePlatforms="x86|x64|ARM" /p:AppxPackageDir=".\AppxPackages" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload
-        # if ${{ success() }}
-        # run: echo 'Debug Build UWP app: ${{ steps.<step.id>.outcome }}'
+      - name: If Successful
+        if: ${{ success() }}
+        run: echo 'Debug Build UWP app - ${{ steps.debug-build-uwp-app.outcome }}'
         
-      - name: VSTest
+      - name: Run VSTest
+        id: run-VSTest
         run: vstest.console.exe /Platform:x64 .\test\CustomMayd.Services.Serialization.Tests\AppxPackages\CustomMayd.Services.Serialization.Tests_1.0.0.0_Debug_Test\CustomMayd.Services.Serialization.Tests_1.0.0.0_x86_Debug.appx
-        # if ${{ success() }}
-        # run: echo 'Run VSTest: ${{ steps.<step.id>.outcome }}'
+      - name: If Successful
+        if: ${{ success() }}
+        run: echo 'Run VSTest - ${{ steps.run-VSTest.outcome }}'
   
       - name: Send message to Slack with outcome of this job.
         uses: archive/github-actions-slack@v1.0.0
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: github
+          slack-optional-icon_emoji: ":nerd_face:"
           slack-text: "Job ${{ github.job }} - ${{ job.status }}"
   
   slack-notification:
     runs-on: windows-latest
     name: Sends a Slack notification with the outcome of the workflow on completion.
+    needs: setup-msbuild-vstest
 
     steps:
       - name: Send notification to Slack
@@ -65,4 +81,4 @@ jobs:
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: github
-          slack-text: "Workflow ${{ github.workflow }} complete :ta-da:"
+          slack-text: "Workflow `${{ github.workflow }}` complete :tada:"
