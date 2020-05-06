@@ -27,5 +27,5 @@ jobs:
         
       - name: show directory contents
         run: |
-          D:\a\tictactoe\tictactoe
+          pwd
           dir
