@@ -23,7 +23,7 @@ jobs:
         id: setup-msbuild-path
         
       - name: MSBuild
-        run: msbuild -version
+        run: msbuild D:\a\tictactoe\tictactoe\TheGame.sln
         
       - name: show directory contents
         run: |
