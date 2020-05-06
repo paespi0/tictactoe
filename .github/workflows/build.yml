@@ -21,11 +21,12 @@ jobs:
       - name: Setup MSBuild Path
         uses: warrenbuckley/Setup-MSBuild@v1
         id: setup-msbuild-path
-        
-      - name: MSBuild
-        run: msbuild D:\a\tictactoe\tictactoe\TheGame.sln
-        
-      - name: show directory contents
+      
+      - name: Show workspace directory path and files
+        working-directory: ${{ GITHUB_WORKSPACE }}
         run: |
           pwd
           dir
+        
+      - name: MSBuild
+        run: msbuild D:\a\tictactoe\tictactoe\TheGame.sln
