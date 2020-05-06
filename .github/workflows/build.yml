@@ -11,7 +11,7 @@ jobs:
 
   run-msbuild:
     runs-on: windows-latest
-    name: Set up MSBuild into PATH to use later
+    name: Setup and run MSBuild
 
     steps:
       - name: Checkout Code
@@ -24,4 +24,4 @@ jobs:
         
       - name: MSBuild
         working-directory: ${{ github.workspace }}
-        run: msbuild .\TheGame.sln
+        run: msbuild .\*.sln
