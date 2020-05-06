@@ -88,8 +88,8 @@ jobs:
   run-vstest:
     runs-on: windows-latest
     name: Run VSTest to run the VS unit tests
-    outputs:
-      test-results: ${{ steps.run-VSTest.outputs.test-results }}
+   # outputs:
+   #   test-results: ${{ steps.run-VSTest.outputs.test-results }}
     needs: [ setup-vstest, run-msbuild ]
     defaults:
       run:
@@ -98,7 +98,8 @@ jobs:
     steps:
         - name: Run VSTest
           id: run-VSTest
-          run: echo "::set-output name=test-results::$(vstest.console.exe /github/workspace/TheGame/Debug/UnitTests.dll)\n"
+          run: echo vstest.console.exe /github/workspace/TheGame/Debug/UnitTests.dll
+ #         run: echo "::set-output name=test-results::$(vstest.console.exe /github/workspace/TheGame/Debug/UnitTests.dll)\n"
           continue-on-error: true
 
        # - name: Send test results to Slack
