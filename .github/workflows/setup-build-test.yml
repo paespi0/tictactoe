@@ -107,7 +107,7 @@ jobs:
             slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
             slack-channel: github
             slack-optional-icon_emoji: ":nerd_face:"
-            slack-text: "${{ env.TEST_RESULTS }}"
+            slack-text: "${{ toJson(env.TEST_RESULTS) }}"
     
         - name: Send message to Slack with outcome job
           uses: archive/github-actions-slack@v1.0.0
