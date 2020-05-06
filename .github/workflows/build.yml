@@ -24,4 +24,4 @@ jobs:
         
       - name: MSBuild
         working-directory: workspace
-        run: msbuild ./tictactoe/tictactoe/*.sln
+        run: msbuild -version
