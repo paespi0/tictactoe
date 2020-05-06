@@ -5,9 +5,7 @@ name: setup-build-test
 on:
   push:
     branches: 
-      - master
-      - feature/*
-      - test/*
+      - github-actions
 
 jobs:
   setup-msbuild-vstest:
