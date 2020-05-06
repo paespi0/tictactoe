@@ -35,5 +35,5 @@ jobs:
     
     steps:
     - name: MSBuild
-      working-directory: ./TheGame/
+      working-directory: github.workspace
       run: msbuild TheGame.sln
