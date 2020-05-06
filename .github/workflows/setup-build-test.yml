@@ -100,7 +100,7 @@ jobs:
   notify-slack-end:
     runs-on: windows-latest
     name: Notify Slack of workflow completion
-    needs: [ notify-slack-start, setup-msbuild, run-msbuild ]
+    needs: [ notify-slack-start, setup-msbuild, run-msbuild, setup-vstest ]
 
     steps:
       - name: Send message to Slack
