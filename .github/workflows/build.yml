@@ -21,16 +21,10 @@ jobs:
       - name: Setup MSBuild Path
         uses: warrenbuckley/Setup-MSBuild@v1
         id: setup-msbuild-path
-  
-  run-msbuild:
-    runs-on: windows-latest
-    name: Run MSBuild to build a VS solution
-    needs: setup-msbuild
+        
+      - name: MSBuild
+        id: msbuildPath
+        run: msbuild -version
     
-    steps:
-    - name: MSBuild
-      id: msbuildPath
-      run: msbuild -version
-    
-    - name: echo msbuild path
-      run: echo "${{ steps.run-msbuild.outputs.msbuildPath }}"
+      - name: echo msbuild path
+        run: echo "${{ steps.setup-msbuild.outputs.msbuildPath }}"
