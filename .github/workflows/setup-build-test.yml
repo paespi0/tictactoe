@@ -88,6 +88,8 @@ jobs:
   run-vstest:
     runs-on: windows-latest
     name: Run VSTest to run the VS unit tests
+    outputs:
+      output1: ${{ steps.runs-VSTest.outputs.test }}
     needs: [ setup-vstest, run-msbuild ]
     defaults:
       run:
@@ -96,25 +98,37 @@ jobs:
     steps:
         - name: Run VSTest
           id: run-VSTest
-          run: echo vstest.console.exe /github/workspace/TheGame/Debug/UnitTests.dll > /github/workspace/TheGame/logfile.txt
+          run: echo vstest.console.exe /github/workspace/TheGame/Debug/UnitTests.dll > /github/workspace/TheGame/logfile.txt && echo /github/workspace/TheGame/logfile.txt
           continue-on-error: true
-          
-        - name: Read test logfile
-          id: test-logfile
-          uses: juliangruber/read-file-action@v1
-          with:
-            path: /github/workspace/TheGame/logfile.txt
-
-        - name: Echo logfile.txt
-          run: echo ${{ steps.package.outputs.content }}
+        - id: step1
+          run: echo "::set-output name=test::hello"
     
-        - name: Send message to Slack with outcome job
-          uses: archive/github-actions-slack@v1.0.0
-          with:
-            slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
-            slack-channel: github
-            slack-optional-icon_emoji: ":nerd_face:"
-            slack-text: ":heavy_check_mark: `${{ github.job }}` complete"
+  outputjob:
+    runs-on: windows-latest
+    needs: run-vstest
+    defaults:
+      run:
+        shell: cmd
+        
+    steps:
+    - run: echo ${{needs.run-VSTest.outputs.output1}}
+          
+       # - name: Read test logfile
+       #   id: test-logfile
+       #   uses: juliangruber/read-file-action@v1
+       #   with:
+       #     path: /github/workspace/TheGame/logfile.txt
+#
+       # - name: Echo logfile.txt
+       #   run: echo ${{ steps.test-logfile.outputs.content }}
+    
+    - name: Send message to Slack with outcome job
+      uses: archive/github-actions-slack@v1.0.0
+      with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: github
+          slack-optional-icon_emoji: ":nerd_face:"
+          slack-text: ":heavy_check_mark: `${{ github.job }}` complete"
 
   notify-slack-end:
     runs-on: windows-latest
