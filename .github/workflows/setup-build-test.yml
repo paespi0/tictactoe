@@ -79,23 +79,23 @@ jobs:
           slack-optional-icon_emoji: ":nerd_face:"
           slack-text: ":heavy_check_mark: `${{ github.job }}` complete"
 
-#   run-vstest:
-#     runs-on: windows-latest
-#     name: Run VSTest to run the VS unit tests
-#
-#     steps:
-#      - name: Run VSTest
-#        id: run-VSTest
-#        needs: [ setup-vstest, run-msbuild ]
-#        run: echo vstest.console.exe /github/workspace/TheGame/Debug/UnitTests.dll
-#
-#      - name: Send message to Slack with outcome job
-#        uses: archive/github-actions-slack@v1.0.0
-#        with:
-#          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
-#          slack-channel: github
-#          slack-optional-icon_emoji: ":nerd_face:"
-#          slack-text: ":heavy_check_mark: `${{ github.job }}` complete"
+  run-vstest:
+    runs-on: windows-latest
+    name: Run VSTest to run the VS unit tests
+    needs: [ setup-vstest, run-msbuild ]
+    
+    steps:
+        - name: Run VSTest
+          id: run-VSTest
+          run: echo vstest.console.exe /github/workspace/TheGame/Debug/UnitTests.dll
+    
+        - name: Send message to Slack with outcome job
+          uses: archive/github-actions-slack@v1.0.0
+          with:
+            slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+            slack-channel: github
+            slack-optional-icon_emoji: ":nerd_face:"
+            slack-text: ":heavy_check_mark: `${{ github.job }}` complete"
 
   notify-slack-end:
     runs-on: windows-latest
