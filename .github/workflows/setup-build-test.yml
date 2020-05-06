@@ -4,8 +4,7 @@ name: Setup - Build - Test
 
 on:
   push:
-    branches: 
-      - github-actions
+    branches: [ github-actions, unit-tests ]
   pull_request:
     branches:
       - master
