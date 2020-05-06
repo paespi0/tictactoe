@@ -29,4 +29,8 @@ jobs:
     
     steps:
     - name: MSBuild
-      run: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\BuildTools\MSBuild\Current\Bin .\msbuild.exe -ver
+      id: msbuildPath
+      run: msbuild -version
+    
+    - name: echo msbuild path
+      run: echo "${{ steps.run-msbuild.outputs.msbuildPath }}"
