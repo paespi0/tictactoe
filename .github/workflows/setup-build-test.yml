@@ -54,6 +54,9 @@ jobs:
         uses: darenm/Setup-VSTest@v1
         id: setup-vstest-path
         
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.2
+        
       - name: Run VSTest
         id: run-VSTest
         run: vstest.console.exe /Platform:x64 .\test\CustomMayd.Services.Serialization.Tests\AppxPackages\CustomMayd.Services.Serialization.Tests_1.0.0.0_Debug_Test\CustomMayd.Services.Serialization.Tests_1.0.0.0_x86_Debug.appx
