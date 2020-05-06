@@ -48,6 +48,7 @@ jobs:
   run-msbuild:
     runs-on: windows-latest
     name: Run MSBuild to build a VS solution
+    needs: setup-msbuild
     
     steps:
       - name: Run MSBuild to build the VS solution
