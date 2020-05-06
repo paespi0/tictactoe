@@ -22,7 +22,7 @@ jobs:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: github
           slack-optional-icon_emoji: ":nerd_face:"
-          slack-text: ":new: `${{ github.event_name }}` on `${{ github.ref }}` triggered `${{ github.workflow }}`!"
+          slack-text: "New `${{ github.event_name }}` on `${{ github.ref }}` triggered `${{ github.workflow }}`!"
 
   setup-msbuild:
     runs-on: windows-latest
@@ -43,14 +43,15 @@ jobs:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: github
           slack-optional-icon_emoji: ":nerd_face:"
-          slack-text: ":heavy_check_mark: `${{ github.job }}` complete"
+          slack-text: "- `${{ github.job }}` complete :heavy_check_mark:"
   
   run-msbuild:
     runs-on: windows-latest
     name: Run MSBuild to build a VS solution
+    
     steps:
       - name: Run MSBuild to build the VS solution
-        run: msbuild /github/workspace/TheGame.sln
+        run: echo msbuild.exe /github/workspace/TheGame.sln
         
       - name: Send message to Slack with outcome of this job
         uses: archive/github-actions-slack@v1.0.0
@@ -58,7 +59,7 @@ jobs:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: github
           slack-optional-icon_emoji: ":nerd_face:"
-          slack-text: ":heavy_check_mark: `${{ github.job }}` complete"
+          slack-text: "- `${{ github.job }}` complete :heavy_check_mark:"
 
 #  setup-vstest:
 #    runs-on: windows-latest
@@ -90,7 +91,7 @@ jobs:
   notify-slack-end:
     runs-on: windows-latest
     name: Notify Slack of workflow completion
-    needs: [ notify-slack-start, setup-msbuild ]
+    needs: [ notify-slack-start, setup-msbuild, run-msbuild ]
 
     steps:
       - name: Send message to Slack
@@ -98,4 +99,5 @@ jobs:
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: github
+          slack-optional-icon_emoji: ":nerd_face:"
           slack-text: "Workflow `${{ github.workflow }}` complete! :tada:"
