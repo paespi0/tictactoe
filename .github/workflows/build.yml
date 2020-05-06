@@ -17,8 +17,8 @@ jobs:
         shell: cmd
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@github-actions
+      - name: Checkout Code
+        uses: actions/checkout@v2.1.0
         id: checkout-code
         
       - name: Setup MSBuild Path
