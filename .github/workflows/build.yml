@@ -6,9 +6,6 @@ on:
   push:
     branches: 
       - github-actions
-  pull_request:
-    branches:
-      - master
 
 jobs:
 
@@ -21,11 +18,11 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@github-actions
         id: checkout-code
         
       - name: Setup MSBuild Path
-        uses: microsoft/setup-msbuild@v1
+        uses: warrenbuckley/Setup-MSBuild@v1
         id: setup-msbuild-path
   
   run-msbuild:
@@ -35,7 +32,8 @@ jobs:
     defaults:
       run:
         shell: cmd
-
+    
     steps:
-      - name: Run MSBuild to build the VS solution
-        run: echo msbuild.exe ./github/workspace/TheGame.sln
+    - name: MSBuild
+      working-directory: src
+      run: msbuild TheGame.vcxproj
