@@ -7,7 +7,7 @@
 #include <unistd.h>
 #endif
 
-#include <iostream>
+#include <iostr
 #include <stdlib.h>
 #include <conio.h>
 #include "GameWinChecker.h"
