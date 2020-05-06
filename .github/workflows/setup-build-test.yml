@@ -28,6 +28,7 @@ jobs:
   setup-msbuild:
     runs-on: windows-latest
     name: Set up MSBuild into PATH to use later
+    needs: notify-slack-start
 
     steps:
       - name: Checkout code
@@ -69,6 +70,7 @@ jobs:
   setup-vstest:
     runs-on: windows-latest
     name: Set up VSTest into Path to use later
+    needs: notify-slack-start
 
     steps:
       - name: Setup VSTest Path
