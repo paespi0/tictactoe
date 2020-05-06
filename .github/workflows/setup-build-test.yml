@@ -54,7 +54,7 @@ jobs:
       - name: Run MSBuild to build the VS solution
         run: echo msbuild.exe /github/workspace/TheGame.sln
         
-      - name: Send message to Slack with outcome of this job
+      - name: Send message to Slack with outcome job
         uses: archive/github-actions-slack@v1.0.0
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
@@ -71,7 +71,7 @@ jobs:
         uses: darenm/Setup-VSTest@v1
         id: setup-vstest-path
 
-      - name: Send message to Slack with outcome of this job
+      - name: Send message to Slack with outcome job
         uses: archive/github-actions-slack@v1.0.0
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
@@ -89,7 +89,7 @@ jobs:
 #        needs: [ setup-vstest, run-msbuild ]
 #        run: echo vstest.console.exe /github/workspace/TheGame/Debug/UnitTests.dll
 #
-#      - name: Send message to Slack with outcome of this job
+#      - name: Send message to Slack with outcome job
 #        uses: archive/github-actions-slack@v1.0.0
 #        with:
 #          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
