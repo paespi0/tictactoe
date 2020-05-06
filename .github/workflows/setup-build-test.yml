@@ -89,7 +89,7 @@ jobs:
     runs-on: windows-latest
     name: Run VSTest to run the VS unit tests
     outputs:
-      output1: ${{ steps.runs-VSTest.outputs.test }}
+      test-results: ${{ steps.run-VSTest.outputs.results }}
     needs: [ setup-vstest, run-msbuild ]
     defaults:
       run:
@@ -98,7 +98,7 @@ jobs:
     steps:
         - name: Run VSTest
           id: run-VSTest
-          run: echo vstest.console.exe /github/workspace/TheGame/Debug/UnitTests.dll 
+          run: echo "::set-output name=results::$(vstest.console.exe /github/workspace/TheGame/Debug/UnitTests.dll)\n"
           continue-on-error: true
 
         - name: Send test results to Slack
@@ -107,7 +107,7 @@ jobs:
             slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
             slack-channel: github
             slack-optional-icon_emoji: ":nerd_face:"
-            slack-text: "${{ steps.run-VSTest.outputs.content }}"
+            slack-text: ${{ steps.run-VSTest.outputs.test-results }}
     
         - name: Send message to Slack with outcome job
           uses: archive/github-actions-slack@v1.0.0
