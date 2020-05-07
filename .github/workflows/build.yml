@@ -1,6 +1,6 @@
-# This workflow sets up and runs MSBuild to build a Visual Studio solution.
+# This workflow sets up and runs MSBuild and VSTest to build and test a Visual Studio solution.
 
-name: Build
+name: Build and Test
 
 on:
   push:
@@ -26,3 +26,7 @@ jobs:
         id: run_msbuild
         working-directory: ${{ github.workspace }}
         run: msbuild .\TheGame.sln
+        
+      - name: run VSTest
+        id: run_vstest
+        run: C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\Extensions\TestPlatform\vstest.console.exe ${{ github.workspace }}\Debug\UnitTests.dll
