@@ -29,9 +29,8 @@ jobs:
         
       - name: Find debug folder
         id: find_debug
-        run: |
-          cd ${{ github.workspace }}\Debug\
-          dir
+        working-directory: .\Debug\
+        run: pwd
         
       #- name: Find VSTest
       #  id: run_vstest
