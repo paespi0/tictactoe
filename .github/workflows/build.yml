@@ -29,9 +29,8 @@ jobs:
         
       - name: Find unit tests
         id: find_tests
-        working-directory: ${{ github.workspace }}
         run: |
-          cd .\Debug\
+          ${{ github.workspace }}\Debug\
           dir
         
       - name: Find VSTest
