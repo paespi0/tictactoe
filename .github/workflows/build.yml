@@ -34,8 +34,7 @@ jobs:
         
       - name: Find VSTest
         id: find_vstest
-        run: |
-          C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\BuildTools\Common7\IDE\Extensions\TestPlatform\
-          dir
+        working-directory: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\BuildTools\Common7\IDE\Extensions\TestPlatform\
+        run: dir
           
 # where I think tests are found: ${{ github.workspace }}\Debug\UnitTests.dll
