@@ -5,7 +5,17 @@ name: Build and Test
 on:
   push:
     branches: 
-      - github-actions
+      - master
+      - test/*
+      - feature/*
+      - bugfix/*
+  
+  pull_request:
+    branches:
+      - master
+      - test/*
+      - feature/*
+      - bugfix/*
 
 jobs:
 
