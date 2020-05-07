@@ -29,4 +29,4 @@ jobs:
         
       - name: run VSTest
         id: run_vstest
-        run: C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\Extensions\TestPlatform\vstest.console.exe ${{ github.workspace }}\Debug\UnitTests.dll
+        run: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\BuildTools\Common7\IDE\Extensions\TestPlatform\vstest.console.exe ${{ github.workspace }}\Debug\UnitTests.dll
