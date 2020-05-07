@@ -27,14 +27,8 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: msbuild .\TheGame.sln
         
-     # - name: Find debug folder
-     #   id: find_debug
-     #   working-directory: ${{ github.workspace }}
-     #   run: dir
-        
-      - name: Find VSTest
-        id: find_vstest
-        working-directory: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\BuildTools\Common7\IDE\Extensions\TestPlatform\
-        run: dir
+      - name: Setup VSTest path
+        uses: darenm/Setup-VSTest@v1
+        id: setup_vstest
           
 # where I think tests are found: ${{ github.workspace }}\Debug\UnitTests.dll
