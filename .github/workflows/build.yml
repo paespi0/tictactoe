@@ -30,7 +30,7 @@ jobs:
       - name: Find debug folder
         id: find_debug
         run: |
-          pwd
+          cd .\Debug\
           dir
         
       #- name: Find VSTest
