@@ -10,28 +10,32 @@
 #include <iostream>
 #include <stdlib.h>
 #include <conio.h>
+#include <string>
 #include "GameWinChecker.h"
 
 void playGame();
 void printIntro();
 void printInstructions();
-void drawCurrentGameState();
+std::string convertGameStateToVisualRepresentation(char gameState[]);
+std::string convertScoreToVisualRepresentation(int playerOneScore, int playerTwoScore);
+void draw(std::string stringToDrawOnScreen);
 void setUpGame();
 void askToPlayAgain();
-void getPlayerMove(char currentPlayerMark);
+void getPlayerMove(char playerSymbol);
 bool checkValidMove(int playerMove);
 void checkForWin();
-void printWinningMessage();
-void showMenu();
-void showScoreboard();
-void showCredits();
+void printWinningMessage(); // TODO: use draw method to print winning message
+void showMenu(); // TODO: use draw method to show menu
+void showHighscoreMenu();
+void showCreditsMenu();
 
-const int gridSize = 11;
-char gridPositions[gridSize] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '\0' };
-char gridLabels[gridSize];
+const int gameBoardSize = 10;
+char gameState[gameBoardSize] = { };
+std::string gameBoard;
+std::string scoreBoard;
 bool horizontalWin, verticalWin, diagonalWin, gameWon;
 int playerMove;
-int playerTurns;
+int maximumPlayerTurns;
 int currentTurn;
 char userInput;
 bool validUserInput;
@@ -122,12 +126,12 @@ void showMenu()
 		else if (userInput == '2')
 		{
 			validUserInput = true;
-			showScoreboard();
+			showHighscoreMenu();
 		}
 		else if (userInput == '3')
 		{
 			validUserInput = true;
-			showCredits();
+			showCreditsMenu();
 		}
 		else if (userInput)
 		{
@@ -143,9 +147,6 @@ void showMenu()
 
 void printInstructions()
 {
-	//HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	//SetConsoleTextAttribute(hConsole, 2);
-
 	system("CLS");
 	std::cout << "                               +---------------+\n";
 	std::cout << "                               |  HOW TO PLAY  |\n";
@@ -257,7 +258,7 @@ void printInstructions()
 	}
 }
 
-void showScoreboard()
+void showHighscoreMenu()
 {
 	system("CLS");
 	std::cout << "                                +--------------+\n";
@@ -279,13 +280,13 @@ void showScoreboard()
 	}
 }
 
-void showCredits()
+void showCreditsMenu()
 {
 	system("CLS");
 	std::cout << "                                  +-----------+\n";
 	std::cout << "                                  |  CREDITS  |\n";
 	std::cout << "                                  +-----------+\n\n";
-	std::cout << "						  This game was made by Tessa Power.\n\n";
+	std::cout << "                      This game was made by Tessa Power.\n\n";
 
 	int keyPressed;
 	std::cout << "           Press any key to return to the main menu...";
@@ -304,11 +305,10 @@ void showCredits()
 void playGame()
 {
 	setUpGame();
-	drawCurrentGameState();
+	draw(convertGameStateToVisualRepresentation(gameState));
 
 	do
 	{
-		
 		if (currentTurn % 2 == 1)
 		{
 			currentPlayerMark = 'X';
@@ -321,7 +321,7 @@ void playGame()
 		}
 		
 		getPlayerMove(currentPlayerMark);
-		drawCurrentGameState();
+		draw(convertGameStateToVisualRepresentation(gameState));
 		checkForWin();
 		if (gameWon) {
 			printWinningMessage();
@@ -330,7 +330,7 @@ void playGame()
 		{
 			currentTurn++;
 		}
-	} while (currentTurn < playerTurns && gameWon == false);
+	} while (currentTurn < maximumPlayerTurns && gameWon == false);
 
 	if (!gameWon)
 	{
@@ -340,31 +340,33 @@ void playGame()
 	askToPlayAgain();
 }
 
-void drawCurrentGameState()
-{
+void draw(std::string stringToDrawOnScreen) {
 	system("CLS");
-	std::cout << "                         Player 1 [X] vs. Player 2 [O]\n\n";
-	std::cout << "                                    " << playerOneScore << "  -  " << playerTwoScore << "\n\n";
-	std::cout << "                                     |   |   \n";
-	std::cout << "                                   " << gridLabels[1] << " | " << gridLabels[2] << " | " << gridLabels[3] << " \n";
-	std::cout << "                                  ___|___|___\n";
-	std::cout << "                                     |   |   \n";
-	std::cout << "                                   " << gridLabels[4] << " | " << gridLabels[5] << " | " << gridLabels[6] << " \n";
-	std::cout << "                                  ___|___|___\n";
-	std::cout << "                                     |   |   \n";
-	std::cout << "                                   " << gridLabels[7] << " | " << gridLabels[8] << " | " << gridLabels[9] << " \n";
-	std::cout << "                                     |   |   \n\n";
+	std::cout << stringToDrawOnScreen;
+}
+
+std::string convertScoreToVisualRepresentation(int playerOneScore, int playerTwoScore)
+{
+	scoreBoard = "                         Player 1 [X] vs. Player 2 [O]\n\n                                    " + std::to_string(playerOneScore) + "  -  " + std::to_string(playerTwoScore) + "\n\n";
+	
+	return (scoreBoard);
+}
+
+std::string convertGameStateToVisualRepresentation(char gameState[])
+{
+	gameBoard = "                                     |   |   \n                                    " + std::to_string(gameState[0]+1) + " |  " + std::to_string(gameState[1]+1) + " |  " + std::to_string(gameState[2] + 1) + " \n                                  ___|___|___\n                                     |   |   \n                                   " + std::to_string(gameState[3] + 1) + " | " + std::to_string(gameState[4] + 1) + " | " + std::to_string(gameState[5] + 1) + " \n                                  ___|___|___\n                                     |   |   \n                                   " + std::to_string(gameState[6] + 1) + " | " + std::to_string(gameState[7] + 1) + " | " + std::to_string(gameState[8] + 1) + " \n                                     |   |   \n\n";
+
+	return (gameBoard);
 }
 
 void setUpGame()
 {
-	playerTurns = gridSize - 1;
+	maximumPlayerTurns = gameBoardSize - 1;
 	currentTurn = 1;
 
-	// Populate the grid spaces with place holder numbers
-	for (int i = 0; i < gridSize; i++) {
-
-		gridLabels[i] = gridPositions[i];
+	// Reset the gameState by removing all elements from the array
+	for (int i = 0; i < gameBoardSize; i++) {
+		gameState[i] = { };
 	}
 }
 
@@ -390,7 +392,7 @@ void getPlayerMove(char currentPlayerMark)
 		if (checkValidMove(playerMove))
 		{
 			validMove = true;
-			gridLabels[playerMove] = currentPlayerMark;
+			gameState[playerMove-1] = currentPlayerMark;
 			break;
 		}
 		else
@@ -402,9 +404,8 @@ void getPlayerMove(char currentPlayerMark)
 
 bool checkValidMove(int playerMove)
 {
-	if (playerMove > 0 && playerMove < 10 && gridLabels[playerMove] == 'X' || playerMove > 0 && playerMove < 10 && gridLabels[playerMove] == 'O')
+	if (playerMove >= 0 && playerMove < 10 && gameState[playerMove-1] == 'X' || playerMove >= 0 && playerMove < 10 && gameState[playerMove-1] == 'O')
 	{
-		std::cout << "That doesn't seem right. Try again.\n";
 		return false;
 	}
 	else
@@ -416,7 +417,7 @@ bool checkValidMove(int playerMove)
 void checkForWin()
 {
 	GameWinChecker gameWinChecker;
-	gameWon = gameWinChecker.checkIfSymbolHasWon(currentPlayerMark, gridLabels);
+	gameWon = gameWinChecker.checkIfSymbolHasWon(currentPlayerMark, gameState);
 }
 
 
@@ -435,14 +436,3 @@ void printWinningMessage()
 		playerTwoScore++;
 	}
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
