@@ -27,15 +27,15 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: msbuild .\TheGame.sln
         
-      - name: Find debug folder
-        id: find_debug
-        working-directory: ${{ github.workspace }}
-        run: dir
+     # - name: Find debug folder
+     #   id: find_debug
+     #   working-directory: ${{ github.workspace }}
+     #   run: dir
         
-      #- name: Find VSTest
-      #  id: run_vstest
-      #  run: |
-      #    C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\BuildTools\Common7\IDE\Extensions\TestPlatform\
-      #    dir
+      - name: Find VSTest
+        id: find_vstest
+        run: |
+          C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\BuildTools\Common7\IDE\Extensions\TestPlatform\
+          dir
           
 # where I think tests are found: ${{ github.workspace }}\Debug\UnitTests.dll
