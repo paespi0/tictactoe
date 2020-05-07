@@ -11,7 +11,7 @@ jobs:
 
   run-msbuild:
     runs-on: windows-latest
-    name: Setup and run MSBuild
+    name: Run MSBuild and VSTest
 
     steps:
       - name: Checkout code
@@ -27,6 +27,17 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: msbuild .\TheGame.sln
         
-      - name: run VSTest
+      - name: Find unit tests
+        id: find_tests
+        working-directory: ${{ github.workspace }}
+        run: |
+          cd .\Debug\
+          dir
+        
+      - name: Find VSTest
         id: run_vstest
-        run: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\BuildTools\Common7\IDE\Extensions\TestPlatform\vstest.console.exe ${{ github.workspace }}\Debug\UnitTests.dll
+        run: |
+          C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\BuildTools\Common7\IDE\Extensions\TestPlatform\
+          dir
+          
+# where I think tests are found: ${{ github.workspace }}\Debug\UnitTests.dll
