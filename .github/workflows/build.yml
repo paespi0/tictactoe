@@ -1,4 +1,5 @@
-# This workflow sets up and runs MSBuild and VSTest to build and test a Visual Studio solution.
+# This workflow sets up and runs MSBuild and VSTest
+# to build and test a Visual Studio solution.
 
 name: Build and Test
 
