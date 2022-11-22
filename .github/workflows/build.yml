@@ -27,11 +27,11 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2.1.0
+        uses: actions/checkout@v2.5.0
         id: checkout_code
         
       - name: Setup MSBuild path
-        uses: microsoft/setup-msbuild@v1
+        uses: microsoft/setup-msbuild@v1.1.3
         id: setup_msbuild
         
       - name: Run MSBuild
@@ -40,5 +40,5 @@ jobs:
         run: msbuild .\TheGame.sln
         
       - name: Setup VSTest path
-        uses: darenm/Setup-VSTest@v1
+        uses: darenm/Setup-VSTest@v1.2
         id: setup_vstest
